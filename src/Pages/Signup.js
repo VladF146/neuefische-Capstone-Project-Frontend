@@ -1,10 +1,11 @@
-import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { AuthenticationContext } from '../Contexts/AuthenticationContenxt';
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { AuthenticationContext } from "../Contexts/AuthenticationContenxt";
 
 function Signup() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const { dispatch } = useContext(AuthenticationContext);
@@ -17,12 +18,12 @@ function Signup() {
     setIsLoading(true);
     setError(null);
     const response = await fetch(
-      'https://neuefische-capstone-backend.herokuapp.com/api/users/signup',
+      "https://neuefische-capstone-backend.herokuapp.com/api/users/signup",
       {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
-      },
+      }
     );
     const data = await response.json();
 
@@ -31,39 +32,107 @@ function Signup() {
       setError(data.error);
     }
     if (response.ok) {
-      localStorage.setItem('user', JSON.stringify(data));
-      dispatch({ type: 'SIGNUP', payload: data });
+      localStorage.setItem("user", JSON.stringify(data));
+      dispatch({ type: "SIGNUP", payload: data });
       setIsLoading(false);
-      navigate('/', { replace: true });
+      navigate("/", { replace: true });
     }
   };
 
   return (
-    <>
+    <SignupContainer>
       <h1>Signup</h1>
-      <form onSubmit={onSubmitHandler}>
-        <label htmlFor="email">Email:</label>
-        <input
-          id="email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <label htmlFor="password">Password:</label>
-        <input
-          id="password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+      <StyledForm onSubmit={onSubmitHandler}>
+        <div>
+          <StyledLabel htmlFor="email">Email:</StyledLabel>
+          <StyledInput
+            id="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div>
+          <StyledLabel htmlFor="password">Password:</StyledLabel>
+          <StyledInput
+            id="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
 
-        <button disabled={isLoading} type="submit">
+        <StyledButton disabled={isLoading} type="submit">
           Signup
-        </button>
-        {error && <div>{error}</div>}
-      </form>
-    </>
+        </StyledButton>
+        {error && <ErrorWrapper>{error}</ErrorWrapper>}
+      </StyledForm>
+    </SignupContainer>
   );
 }
+
+const SignupContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    margin-bottom: 2rem;
+  }
+`;
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  label {
+    width: 100%;
+  }
+  input {
+    width: 100%;
+  }
+  button {
+    width: 100%;
+  }
+`;
+
+const StyledLabel = styled.label`
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+`;
+
+const StyledInput = styled.input`
+  border-radius: 10px;
+  padding: 0.7rem;
+  font-weight: bolder;
+  font-size: 1rem;
+`;
+
+const StyledButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #34d399;
+  border-radius: 10px;
+  padding: 1rem;
+  border: unset;
+  font-weight: bolder;
+  font-size: 1rem;
+  &hover {
+    cursor: pointer;
+  }
+`;
+
+const ErrorWrapper = styled.div`
+  border-radius: 10px;
+  background-color: #fecaca;
+  padding: 1rem;
+  text-align: center;
+`;
 
 export default Signup;

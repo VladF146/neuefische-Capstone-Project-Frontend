@@ -8,7 +8,7 @@ function App() {
   const { user } = useContext(AuthenticationContext);
 
   return (
-    <div>
+    <div className="App">
       <Routes>
         <Route path="/" element={user ? <Home /> : <Navigate to="/signup" />} />
         <Route path="/signup" element={!user ? <Signup /> : <Home />} />

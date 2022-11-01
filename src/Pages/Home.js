@@ -1,26 +1,51 @@
-import { useContext } from 'react';
-import { AuthenticationContext } from '../Contexts/AuthenticationContenxt';
+import { useContext } from "react";
+import styled from "styled-components";
+import { AuthenticationContext } from "../Contexts/AuthenticationContenxt";
 
 function Home() {
   const { user, dispatch } = useContext(AuthenticationContext);
 
   const onClickHandler = () => {
-    localStorage.removeItem('user');
-    dispatch({ type: 'SIGNOUT' });
+    localStorage.removeItem("user");
+    dispatch({ type: "SIGNOUT" });
   };
 
   return (
-    <>
-      <h1>Home</h1>
-      <p>
-        Welcome
-        {user.email}
-      </p>
-      <button type="button" onClick={onClickHandler}>
+    <HomeContainer>
+      <h1>{`Welcome ${user.email}`}</h1>
+      <StyledButton type="button" onClick={onClickHandler}>
         Signout
-      </button>
-    </>
+      </StyledButton>
+    </HomeContainer>
   );
 }
+
+const HomeContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    margin-bottom: 2rem;
+  }
+`;
+const StyledButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #34d399;
+  border-radius: 10px;
+  padding: 1rem;
+  border: unset;
+  font-weight: bolder;
+  font-size: 1rem;
+  &hover {
+    cursor: pointer;
+  }
+`;
 
 export default Home;

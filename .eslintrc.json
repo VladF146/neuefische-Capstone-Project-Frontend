@@ -15,6 +15,9 @@
     "react/jsx-filename-extension": "off",
     "react/prop-types": "off",
     "react/jsx-no-constructed-context-values": "off",
-    "jsx-a11y/label-has-associated-control": "off"
+    "jsx-a11y/label-has-associated-control": "off",
+    "quotes": "off",
+    "comma-dangle": "off",
+    "semi": "off"
   }
 }
