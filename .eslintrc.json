@@ -12,7 +12,9 @@
   "plugins": ["react"],
   "rules": {
     "react/react-in-jsx-scope": "off",
-
-    "react/jsx-filename-extension": "off"
+    "react/jsx-filename-extension": "off",
+    "react/prop-types": "off",
+    "react/jsx-no-constructed-context-values": "off",
+    "jsx-a11y/label-has-associated-control": "off"
   }
 }
