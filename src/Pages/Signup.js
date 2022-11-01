@@ -90,12 +90,8 @@ const StyledForm = styled.form`
   flex-direction: column;
   gap: 2rem;
 
-  label {
-    width: 100%;
-  }
-  input {
-    width: 100%;
-  }
+  label,
+  input,
   button {
     width: 100%;
   }
@@ -117,14 +113,15 @@ const StyledButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #34d399;
+  background-color: #6ee7b7;
   border-radius: 10px;
   padding: 1rem;
   border: unset;
   font-weight: bolder;
   font-size: 1rem;
-  &hover {
-    cursor: pointer;
+  cursor: pointer;
+  &:hover {
+    background-color: #34d399;
   }
 `;
 
