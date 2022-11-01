@@ -1,25 +1,25 @@
-import { createContext, useReducer, useEffect } from "react";
+import { createContext, useReducer, useEffect } from 'react';
 
 export const AuthenticationContext = createContext();
 
 const authenticationReducer = (state, action) => {
   switch (action.type) {
-    case "SIGNUP":
+    case 'SIGNUP':
       return { user: action.payload };
-    case "SIGNOUT":
+    case 'SIGNOUT':
       return { user: null };
     default:
       return state;
   }
 };
 
-const AuthenticationContextProvider = ({ children }) => {
+function AuthenticationContextProvider({ children }) {
   const [state, dispatch] = useReducer(authenticationReducer, { user: null });
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
-      dispatch({ type: "SIGNUP", payload: user });
+      dispatch({ type: 'SIGNUP', payload: user });
     }
   }, [dispatch]);
 
@@ -28,6 +28,6 @@ const AuthenticationContextProvider = ({ children }) => {
       {children}
     </AuthenticationContext.Provider>
   );
-};
+}
 
 export default AuthenticationContextProvider;
