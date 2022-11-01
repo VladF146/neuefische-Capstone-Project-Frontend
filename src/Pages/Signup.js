@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthenticationContext } from '../Contexts/AuthenticationContenxt';
 
 function Signup() {
@@ -7,6 +8,8 @@ function Signup() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const { dispatch } = useContext(AuthenticationContext);
+
+  const navigate = useNavigate();
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -29,10 +32,10 @@ function Signup() {
     }
     if (response.ok) {
       localStorage.setItem('user', JSON.stringify(data));
-      dispatch({ type: 'SIGNIN', payload: data });
+      dispatch({ type: 'SIGNUP', payload: data });
       setIsLoading(false);
+      navigate('/', { replace: true });
     }
-    await email;
   };
 
   return (
