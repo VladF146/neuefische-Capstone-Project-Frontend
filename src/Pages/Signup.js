@@ -12,8 +12,8 @@ function Signup() {
 
   const navigate = useNavigate();
 
-  const onSubmitHandler = async (e) => {
-    e.preventDefault();
+  const onSubmitHandler = async (event) => {
+    event.preventDefault();
 
     setIsLoading(true);
     setError(null);
@@ -49,7 +49,7 @@ function Signup() {
             id="email"
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(event) => setEmail(event.target.value)}
           />
         </div>
         <div>
@@ -58,7 +58,7 @@ function Signup() {
             id="password"
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(event) => setPassword(event.target.value)}
           />
         </div>
 
