@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
 import { AuthenticationContext } from "../Contexts/AuthenticationContenxt";
 
@@ -67,6 +67,7 @@ function Signin() {
         </StyledButton>
         {error && <ErrorWrapper>{error}</ErrorWrapper>}
       </StyledForm>
+      <StyledLink to="/signup">Signup</StyledLink>
     </SigninContainer>
   );
 }
@@ -130,6 +131,19 @@ const ErrorWrapper = styled.div`
   background-color: #fecaca;
   padding: 1rem;
   text-align: center;
+`;
+
+const StyledLink = styled(Link)`
+  margin-top: 2rem;
+  text-decoration: none;
+  font-weight: bolder;
+  font-size: 1rem;
+  color: black;
+
+  &:hover {
+    text-decoration: underline;
+    color: #34d399;
+  }
 `;
 
 export default Signin;

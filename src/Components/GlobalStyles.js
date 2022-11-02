@@ -11,7 +11,12 @@ html {
     height: 100vh;
 }
 
-body, #root, .App {
+body {
+    height: 100%;
+    font-family: sans-serif;
+}
+
+#root, .App {
     height: 100%;
 }`;
 
