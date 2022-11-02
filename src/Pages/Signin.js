@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { AuthenticationContext } from "../Contexts/AuthenticationContenxt";
 
-function Signup() {
+function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -18,7 +18,7 @@ function Signup() {
     setIsLoading(true);
     setError(null);
     const response = await fetch(
-      "https://neuefische-capstone-backend.herokuapp.com/api/users/signup",
+      "https://neuefische-capstone-backend.herokuapp.com/api/users/signin",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -40,8 +40,8 @@ function Signup() {
   };
 
   return (
-    <SignupContainer>
-      <h1>Signup</h1>
+    <SigninContainer>
+      <h1>Signin</h1>
       <StyledForm onSubmit={onSubmitHandler}>
         <div>
           <StyledLabel htmlFor="email">Email:</StyledLabel>
@@ -63,15 +63,15 @@ function Signup() {
         </div>
 
         <StyledButton disabled={isLoading} type="submit">
-          Signup
+          Signin
         </StyledButton>
         {error && <ErrorWrapper>{error}</ErrorWrapper>}
       </StyledForm>
-    </SignupContainer>
+    </SigninContainer>
   );
 }
 
-const SignupContainer = styled.div`
+const SigninContainer = styled.div`
   height: 100%;
   width: 100%;
   padding: 0 1rem;
@@ -132,4 +132,4 @@ const ErrorWrapper = styled.div`
   text-align: center;
 `;
 
-export default Signup;
+export default Signin;
