@@ -21,13 +21,13 @@ function Home() {
 }
 
 const HomeContainer = styled.div`
-  height: 100%;
-  width: 100%;
+  flex-grow: 1;
   padding: 0 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow-y: scroll;
 
   h1 {
     margin-bottom: 2rem;

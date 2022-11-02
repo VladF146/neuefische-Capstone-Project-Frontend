@@ -4,6 +4,9 @@ import { AuthenticationContext } from "./Contexts/AuthenticationContenxt";
 import Home from "./Pages/Home";
 import Signup from "./Pages/Signup";
 import Signin from "./Pages/Signin";
+import Layout from "./Components/Layout";
+import Edit from "./Pages/Edit";
+import Settings from "./Pages/Settings";
 
 function App() {
   const { user } = useContext(AuthenticationContext);
@@ -11,7 +14,18 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={user ? <Home /> : <Navigate to="/signin" />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={user ? <Home /> : <Navigate to="/signin" />} />
+          <Route
+            path="edit"
+            element={user ? <Edit /> : <Navigate to="/signin" />}
+          />
+          <Route
+            path="settings"
+            element={user ? <Settings /> : <Navigate to="/signin" />}
+          />
+        </Route>
+
         <Route
           path="/signup"
           element={!user ? <Signup /> : <Navigate to="/" />}
