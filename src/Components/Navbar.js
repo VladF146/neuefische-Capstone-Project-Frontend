@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 function Navbar() {
@@ -6,7 +6,7 @@ function Navbar() {
     <StyledNavbar>
       <ul>
         <li>
-          <Link to="/">
+          <StyleNavLink to="/" end>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -21,10 +21,10 @@ function Navbar() {
               />
             </svg>
             Home
-          </Link>
+          </StyleNavLink>
         </li>
         <li>
-          <Link to="/edit">
+          <StyleNavLink to="/edit">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -39,10 +39,10 @@ function Navbar() {
               />
             </svg>
             Edit
-          </Link>
+          </StyleNavLink>
         </li>
         <li>
-          <Link to="/settings">
+          <StyleNavLink to="/settings">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -57,7 +57,7 @@ function Navbar() {
               />
             </svg>
             Settings
-          </Link>
+          </StyleNavLink>
         </li>
       </ul>
     </StyledNavbar>
@@ -76,28 +76,32 @@ const StyledNavbar = styled.nav`
     flex-grow: 1;
   }
 
-  a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    width: 100%;
-    padding: 1rem;
-    text-align: center;
-    color: black;
-    font-size: 0.8rem;
-    
-
-    &:hover {
-      color: white;
-      background-color: #34d399;
-    }
-  }
-
   svg {
     width: 25px;
     font-weight: bolder;
     margin-bottom: 0.2rem;
+  }
+`;
+
+const StyleNavLink = styled(NavLink)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  width: 100%;
+  padding: 1rem;
+  text-align: center;
+  color: black;
+  font-size: 0.8rem;
+
+  &:hover {
+    color: white;
+    background-color: #34d399;
+  }
+
+  &.active {
+    color: white;
+    background-color: #34d399;
   }
 `;
 
