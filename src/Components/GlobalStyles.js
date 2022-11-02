@@ -11,11 +11,7 @@ html {
     height: 100vh;
 }
 
-body {
-    height: 100%;
-}
-
-#root, .App {
+body, #root, .App {
     height: 100%;
 }`;
 
