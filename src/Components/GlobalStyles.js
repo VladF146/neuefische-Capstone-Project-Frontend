@@ -9,12 +9,10 @@ const GlobalStyles = createGlobalStyle`
 
 html {
     height: 100vh;
-    height: -webkit-fill-available;
 }
 
 body {
     height: 100%;
-    height: -webkit-fill-available;
     font-family: sans-serif;
 }
 
