@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import AuthenticationContextProvider from "./Contexts/AuthenticationContenxt";
-import { NotesContextProvider } from "./Contexts/NotesContext";
+import AuthenticationContextProvider from "./Contexts/AuthenticationContext";
+import NotesContextProvider from "./Contexts/NotesContext";
 import GlobalStyles from "./Components/GlobalStyles";
 import App from "./App";
 

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { AuthenticationContext } from "../Contexts/AuthenticationContenxt";
+import { AuthenticationContext } from "../Contexts/AuthenticationContext";
 
 function Home() {
   const { user, dispatch } = useContext(AuthenticationContext);

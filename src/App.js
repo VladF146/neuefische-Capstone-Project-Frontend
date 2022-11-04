@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { AuthenticationContext } from "./Contexts/AuthenticationContenxt";
+import { AuthenticationContext } from "./Contexts/AuthenticationContext";
 import Home from "./Pages/Home";
 import Signup from "./Pages/Signup";
 import Signin from "./Pages/Signin";
 import Layout from "./Components/Layout";
-import Edit from "./Pages/Edit";
+import EditNotes from "./Pages/EditNotes";
 import Settings from "./Pages/Settings";
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
           <Route index element={user ? <Home /> : <Navigate to="/signin" />} />
           <Route
             path="edit"
-            element={user ? <Edit /> : <Navigate to="/signin" />}
+            element={user ? <EditNotes /> : <Navigate to="/signin" />}
           />
           <Route
             path="settings"
