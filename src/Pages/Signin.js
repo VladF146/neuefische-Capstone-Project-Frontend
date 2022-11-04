@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
-import { AuthenticationContext } from "../Contexts/AuthenticationContenxt";
+import { AuthenticationContext } from "../Contexts/AuthenticationContext";
 
 function Signin() {
   const [email, setEmail] = useState("");
