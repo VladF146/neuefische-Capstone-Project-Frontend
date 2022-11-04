@@ -45,9 +45,8 @@ function EditNotes() {
 
   return (
     <EditNotesContainer>
+      <h1>Create new note</h1>
       <form className="create" onSubmit={onSubmitHandler}>
-        <h3>Create new note</h3>
-
         <label>Title:</label>
         <input
           type="text"
@@ -56,13 +55,14 @@ function EditNotes() {
         />
 
         <label>Content:</label>
-        <input
-          type="text"
+        <textarea
           onChange={(e) => setContent(e.target.value)}
           value={content}
         />
 
-        <button type="submit">Create note</button>
+        <button disabled={isLoading} type="submit">
+          Create note
+        </button>
         {error && <div className="error">{error}</div>}
       </form>
     </EditNotesContainer>

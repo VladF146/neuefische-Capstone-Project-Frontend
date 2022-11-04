@@ -7,6 +7,7 @@ import Signin from "./Pages/Signin";
 import Layout from "./Components/Layout";
 import EditNotes from "./Pages/EditNotes";
 import Settings from "./Pages/Settings";
+import Note from "./Pages/Note";
 
 function App() {
   const { user } = useContext(AuthenticationContext);
@@ -16,6 +17,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={user ? <Home /> : <Navigate to="/signin" />} />
+          <Route
+            path="/:id"
+            element={user ? <Note /> : <Navigate to="/signin" />}
+          />
           <Route
             path="edit"
             element={user ? <EditNotes /> : <Navigate to="/signin" />}

@@ -1,14 +1,26 @@
 import styled from "styled-components";
+import { useContext } from "react";
+import { AuthenticationContext } from "../Contexts/AuthenticationContext";
 
 function Settings() {
+  const { user, dispatch } = useContext(AuthenticationContext);
+
+  const onClickHandler = () => {
+    localStorage.removeItem("user");
+    dispatch({ type: "SIGNOUT" });
+  };
+
   return (
-    <EditContainer>
-      <h1>Settings page</h1>
-    </EditContainer>
+    <SettingsContainer>
+      <h1>{user.email}</h1>
+      <StyledButton type="button" onClick={onClickHandler}>
+        Signout
+      </StyledButton>
+    </SettingsContainer>
   );
 }
 
-const EditContainer = styled.div`
+const SettingsContainer = styled.div`
   flex-grow: 1;
   padding: 0 1rem;
   display: flex;
@@ -17,4 +29,21 @@ const EditContainer = styled.div`
   align-items: center;
   overflow-y: scroll;
 `;
+
+const StyledButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #6ee7b7;
+  border-radius: 10px;
+  padding: 1rem;
+  border: unset;
+  font-weight: bolder;
+  font-size: 1rem;
+  cursor: pointer;
+  &:hover {
+    background-color: #34d399;
+  }
+`;
+
 export default Settings;

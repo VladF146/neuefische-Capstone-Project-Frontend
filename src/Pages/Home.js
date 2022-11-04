@@ -1,21 +1,43 @@
-import { useContext } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { NotesContext } from "../Contexts/NotesContext";
 import { AuthenticationContext } from "../Contexts/AuthenticationContext";
 
-function Home() {
-  const { user, dispatch } = useContext(AuthenticationContext);
+import NoteCard from "../Components/NoteCard";
 
-  const onClickHandler = () => {
-    localStorage.removeItem("user");
-    dispatch({ type: "SIGNOUT" });
-  };
+function Home() {
+  const { notes, dispatch } = useContext(NotesContext);
+  const { user } = useContext(AuthenticationContext);
+
+  useEffect(() => {
+    const fetchNotes = async () => {
+      const response = await fetch(
+        "https://neuefische-capstone-backend.herokuapp.com/api/notes",
+        {
+          headers: { Authorization: `Bearer ${user.token}` },
+        }
+      );
+      const data = await response.json();
+
+      if (response.ok) {
+        dispatch({ type: "GET_ALL_NOTES", payload: data });
+      }
+    };
+
+    if (user) {
+      fetchNotes();
+    }
+  }, [user, dispatch]);
 
   return (
     <HomeContainer>
-      <h1>{`Welcome ${user.email}`}</h1>
-      <StyledButton type="button" onClick={onClickHandler}>
-        Signout
-      </StyledButton>
+      {notes &&
+        notes.map((note) => (
+          <Link to={note._id} key={note._id}>
+            <NoteCard note={note} />
+          </Link>
+        ))}
     </HomeContainer>
   );
 }
@@ -31,21 +53,6 @@ const HomeContainer = styled.div`
 
   h1 {
     margin-bottom: 2rem;
-  }
-`;
-const StyledButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #6ee7b7;
-  border-radius: 10px;
-  padding: 1rem;
-  border: unset;
-  font-weight: bolder;
-  font-size: 1rem;
-  cursor: pointer;
-  &:hover {
-    background-color: #34d399;
   }
 `;
 
