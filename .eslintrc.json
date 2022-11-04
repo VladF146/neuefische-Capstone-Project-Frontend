@@ -19,6 +19,9 @@
     "quotes": "off",
     "comma-dangle": "off",
     "semi": "off",
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "no-underscore-dangle": "off",
+    "no-unused-vars": "off",
+    "max-len": "off"
   }
 }
