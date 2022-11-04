@@ -2,7 +2,7 @@ import { createContext, useReducer } from "react";
 
 export const NotesContext = createContext();
 
-export const notesReducer = (state, action) => {
+const notesReducer = (state, action) => {
   switch (action.type) {
     case "GET_ALL_NOTES":
       return {
@@ -14,9 +14,7 @@ export const notesReducer = (state, action) => {
       };
     case "UPDATE_SINGLE_NOTE":
       return {
-        notes: state.notes.map((element) =>
-          element._id === action.payload._id ? action.payload : element
-        ),
+        notes: state.notes.map((element) => (element._id === action.payload._id ? action.payload : element)),
       };
     case "DELETE_SINGLE_NOTE":
       return {
@@ -29,7 +27,7 @@ export const notesReducer = (state, action) => {
   }
 };
 
-export const NotesContextProvider = ({ children }) => {
+function NotesContextProvider({ children }) {
   const [state, dispatch] = useReducer(notesReducer, {
     notes: null,
   });
@@ -39,4 +37,6 @@ export const NotesContextProvider = ({ children }) => {
       {children}
     </NotesContext.Provider>
   );
-};
+}
+
+export default NotesContextProvider;
