@@ -7,7 +7,7 @@ function Home() {
       <StyledList>
         {Array(20)
           .fill()
-          .map((element, index) => (
+          .map((_, index) => (
             <li>
               <StyledLink to="/">
                 <h2>Note title #{index + 1}</h2>
