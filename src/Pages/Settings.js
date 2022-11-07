@@ -5,7 +5,7 @@ import { AuthenticationContext } from "../Contexts/AuthenticationContenxt";
 function Settings() {
   const { user, dispatch } = useContext(AuthenticationContext);
 
-  const onClickHandler = () => {
+  const handleSignout = () => {
     localStorage.removeItem("user");
     dispatch({ type: "SIGNOUT" });
   };
@@ -13,7 +13,7 @@ function Settings() {
   return (
     <EditContainer>
       <h1>{user.email}</h1>
-      <StyledButton type="button" onClick={onClickHandler}>
+      <StyledButton type="button" onClick={handleSignout}>
         Signout
       </StyledButton>
     </EditContainer>
