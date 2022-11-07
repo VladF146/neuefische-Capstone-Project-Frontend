@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { AuthenticationContext } from "../Contexts/AuthenticationContext";
 
 function SingleNote() {
-  const [note, setNote] = useState(null);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const { user } = useContext(AuthenticationContext);
@@ -19,7 +18,6 @@ function SingleNote() {
         }
       );
       const data = await response.json();
-      setNote(data);
       setTitle(data.title);
       setContent(data.content);
     };
@@ -30,7 +28,7 @@ function SingleNote() {
   return (
     <SingleNoteContainer>
       <Title>{title}</Title>
-      <Content>{title}</Content>
+      <Content>{content}</Content>
     </SingleNoteContainer>
   );
 }
