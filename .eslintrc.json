@@ -23,6 +23,7 @@
     "no-underscore-dangle": "off",
     "no-unused-vars": "off",
     "max-len": "off",
-    "operator-linebreak": "off"
+    "operator-linebreak": "off",
+    "react/jsx-one-expression-per-line": "off"
   }
 }
