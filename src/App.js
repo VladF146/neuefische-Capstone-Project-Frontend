@@ -5,7 +5,7 @@ import SingleNote from "./Pages/SingleNote";
 import Signup from "./Pages/Signup";
 import Signin from "./Pages/Signin";
 import Layout from "./Components/Layout";
-import Edit from "./Pages/Edit";
+import CreateNote from "./Pages/CreateNote";
 import Settings from "./Pages/Settings";
 
 function App() {
@@ -26,8 +26,8 @@ function App() {
             element={<ProtectedRoute component={<SingleNote />} />}
           />
           <Route
-            path="edit"
-            element={<ProtectedRoute component={<Edit />} />}
+            path="create"
+            element={<ProtectedRoute component={<CreateNote />} />}
           />
           <Route
             path="settings"

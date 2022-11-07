@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useContext } from "react";
-import { AuthenticationContext } from "../Contexts/AuthenticationContenxt";
+import { AuthenticationContext } from "../Contexts/AuthenticationContext";
 
 function Settings() {
   const { user, dispatch } = useContext(AuthenticationContext);
@@ -29,7 +29,6 @@ const EditContainer = styled.div`
   align-items: center;
   overflow-y: scroll;
 
-  
   h1 {
     margin-bottom: 2rem;
   }
