@@ -1,33 +1,42 @@
-import { createContext, useReducer, useEffect } from "react";
+import { createContext, useReducer } from "react";
 
-export const AuthenticationContext = createContext();
+export const NotesContext = createContext();
 
-const authenticationReducer = (state, action) => {
+const notesReducer = (state, action) => {
   switch (action.type) {
-    case "SIGNIN":
-      return { user: action.payload };
-    case "SIGNOUT":
-      return { user: null };
+    case "GET_ALL_NOTES":
+      return {
+        notes: action.payload,
+      };
+    case "POST_SINGLE_NOTE":
+      return {
+        notes: [action.payload, ...state.notes],
+      };
+    case "UPDATE_SINGLE_NOTE":
+      return {
+        notes: state.notes.map((element) => (element._id === action.payload._id ? action.payload : element)),
+      };
+    case "DELETE_SINGLE_NOTE":
+      return {
+        notes: state.notes.filter(
+          (element) => element._id !== action.payload._id
+        ),
+      };
     default:
       return state;
   }
 };
 
-function AuthenticationContextProvider({ children }) {
-  const [state, dispatch] = useReducer(authenticationReducer, { user: null });
-
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      dispatch({ type: "SIGNIN", payload: user });
-    }
-  }, [dispatch]);
+function NotesContextProvider({ children }) {
+  const [state, dispatch] = useReducer(notesReducer, {
+    notes: [],
+  });
 
   return (
-    <AuthenticationContext.Provider value={{ ...state, dispatch }}>
+    <NotesContext.Provider value={{ ...state, dispatch }}>
       {children}
-    </AuthenticationContext.Provider>
+    </NotesContext.Provider>
   );
 }
 
-export default AuthenticationContextProvider;
+export default NotesContextProvider;
