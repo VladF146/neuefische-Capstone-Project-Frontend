@@ -21,9 +21,7 @@ const notesReducer = (state, action) => {
       };
     case notesActionTypes.UPDATE_SINGLE_NOTE:
       return {
-        notes: state.notes.map((element) =>
-          element._id === action.payload._id ? action.payload : element
-        ),
+        notes: state.notes.map((element) => (element._id === action.payload._id ? action.payload : element)),
       };
     case notesActionTypes.DELETE_SINGLE_NOTE:
       return {
