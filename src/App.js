@@ -1,6 +1,5 @@
-import { useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { AuthenticationContext } from "./Contexts/AuthenticationContenxt";
+import ProtectedRoute from "./Components/ProtectedRoute";
 import Home from "./Pages/Home";
 import SingleNote from "./Pages/SingleNote";
 import Signup from "./Pages/Signup";
@@ -10,43 +9,39 @@ import Edit from "./Pages/Edit";
 import Settings from "./Pages/Settings";
 
 function App() {
-  const { user } = useContext(AuthenticationContext);
-
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route
             index
-            element={
-              user ? <Navigate to="/notes" /> : <Navigate to="/signin" />
-            }
+            element={<ProtectedRoute component={<Navigate to="/notes" />} />}
           />
           <Route
             path="notes"
-            element={user ? <Home /> : <Navigate to="/signin" />}
+            element={<ProtectedRoute component={<Home />} />}
           />
           <Route
             path="notes/:noteId"
-            element={user ? <SingleNote /> : <Navigate to="/signin" />}
+            element={<ProtectedRoute component={<SingleNote />} />}
           />
           <Route
             path="edit"
-            element={user ? <Edit /> : <Navigate to="/signin" />}
+            element={<ProtectedRoute component={<Edit />} />}
           />
           <Route
             path="settings"
-            element={user ? <Settings /> : <Navigate to="/signin" />}
+            element={<ProtectedRoute component={<Settings />} />}
           />
         </Route>
 
         <Route
           path="/signup"
-          element={!user ? <Signup /> : <Navigate to="/notes" />}
+          element={<ProtectedRoute component={<Signup />} unprotected />}
         />
         <Route
           path="/signin"
-          element={!user ? <Signin /> : <Navigate to="/notes" />}
+          element={<ProtectedRoute component={<Signin />} unprotected />}
         />
         <Route path="*" element="No page found" />
       </Routes>
