@@ -8,8 +8,8 @@ function Home() {
         {Array(20)
           .fill()
           .map((_, index) => (
-            <li>
-              <StyledLink to="/">
+            <li key={Math.random()}>
+              <StyledLink to={`${Math.random()}`}>
                 <h2>Note title #{index + 1}</h2>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
