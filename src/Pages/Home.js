@@ -1,32 +1,34 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+const notesList = Array(20)
+  .fill()
+  .map((_, index) => ({ id: index + 1 }));
+
 function Home() {
   return (
     <HomeContainer>
       <StyledList>
-        {Array(20)
-          .fill()
-          .map((_, index) => (
-            <li key={Math.random()}>
-              <StyledLink to={`${Math.random()}`}>
-                <h2>Note title #{index + 1}</h2>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                  />
-                </svg>
-              </StyledLink>
-            </li>
-          ))}
+        {notesList.map(({ id }) => (
+          <li key={id}>
+            <StyledLink to={`${id}`}>
+              <h2>Note title #{id}</h2>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                />
+              </svg>
+            </StyledLink>
+          </li>
+        ))}
       </StyledList>
     </HomeContainer>
   );
