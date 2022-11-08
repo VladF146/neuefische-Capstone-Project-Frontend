@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
-import { AuthenticationContext } from "../Contexts/AuthenticationContenxt";
+import { AuthenticationContext } from "../Contexts/AuthenticationContext";
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -12,7 +12,7 @@ function Signup() {
 
   const navigate = useNavigate();
 
-  const onSubmitHandler = async (event) => {
+  const handleSignup = async (event) => {
     event.preventDefault();
 
     setIsLoading(true);
@@ -42,7 +42,7 @@ function Signup() {
   return (
     <SignupContainer>
       <h1>Signup</h1>
-      <StyledForm onSubmit={onSubmitHandler}>
+      <StyledForm onSubmit={handleSignup}>
         <div>
           <StyledLabel htmlFor="email">Email:</StyledLabel>
           <StyledInput

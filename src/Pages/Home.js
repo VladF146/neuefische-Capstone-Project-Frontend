@@ -1,51 +1,105 @@
-import { useContext } from "react";
 import styled from "styled-components";
-import { AuthenticationContext } from "../Contexts/AuthenticationContenxt";
+import { Link } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { NotesContext, notesActionTypes } from "../Contexts/NotesContext";
+import { AuthenticationContext } from "../Contexts/AuthenticationContext";
 
 function Home() {
-  const { user, dispatch } = useContext(AuthenticationContext);
+  const { notes, dispatch } = useContext(NotesContext);
+  const { user } = useContext(AuthenticationContext);
 
-  const onClickHandler = () => {
-    localStorage.removeItem("user");
-    dispatch({ type: "SIGNOUT" });
-  };
+  useEffect(() => {
+    const fetchNotes = async () => {
+      const response = await fetch(
+        "https://neuefische-capstone-backend.herokuapp.com/api/notes",
+        {
+          headers: { Authorization: `Bearer ${user.token}` },
+        }
+      );
+      const data = await response.json();
+
+      if (response.ok) {
+        dispatch({ type: notesActionTypes.GET_ALL_NOTES, payload: data });
+      }
+    };
+
+    if (user) {
+      fetchNotes();
+    }
+  }, [user, dispatch]);
 
   return (
     <HomeContainer>
-      <h1>{`Welcome ${user.email}`}</h1>
-      <StyledButton type="button" onClick={onClickHandler}>
-        Signout
-      </StyledButton>
+      <StyledList>
+        {notes &&
+          notes.map(({ title, _id: id }) => (
+            <li key={id}>
+              <StyledLink to={`${id}`}>
+                <h2>{title}</h2>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                  />
+                </svg>
+              </StyledLink>
+            </li>
+          ))}
+      </StyledList>
     </HomeContainer>
   );
 }
 
 const HomeContainer = styled.div`
   flex-grow: 1;
-  padding: 0 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   overflow-y: scroll;
+`;
 
-  h1 {
-    margin-bottom: 2rem;
+const StyledList = styled.ul`
+  height: 100%;
+  width: 100%;
+
+  li {
+    list-style: none;
+    border-bottom: 1px solid #f1f5f9;
+
+    &:hover {
+      background-color: #f8fafc;
+    }
   }
 `;
-const StyledButton = styled.button`
+
+const StyledLink = styled(Link)`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  background-color: #6ee7b7;
-  border-radius: 10px;
   padding: 1rem;
-  border: unset;
-  font-weight: bolder;
-  font-size: 1rem;
-  cursor: pointer;
-  &:hover {
-    background-color: #34d399;
+  color: #1e293b;
+  text-decoration: none;
+
+  h2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex-grow: 1
+  }
+
+  svg {
+    width: 25px;
+    font-weight: bolder;
+    margin-bottom: 0.2rem;
+    flex-shrink: 0
   }
 `;
 
