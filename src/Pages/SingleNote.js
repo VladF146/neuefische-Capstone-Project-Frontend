@@ -36,7 +36,6 @@ function SingleNote() {
   }, []);
 
   const handleUpdate = async () => {
-    console.log("Hello1");
     const response = await fetch(
       `https://neuefische-capstone-backend.herokuapp.com/api/notes/${noteId}`,
       {
@@ -104,13 +103,14 @@ function SingleNote() {
           </ReactMarkdown>
         </ReactMarkdownContainer>
       )}
-
-      <button type="button" onClick={() => handleUpdate()}>
-        Update note
-      </button>
-      <button type="button" onClick={handleDelete}>
-        Delete note
-      </button>
+      <ButtonContainer>
+        <StyledButton type="button" onClick={() => handleUpdate()}>
+          Update note
+        </StyledButton>
+        <StyledButton type="button" onClick={handleDelete}>
+          Delete note
+        </StyledButton>
+      </ButtonContainer>
     </SingleNoteContainer>
   );
 }
@@ -176,6 +176,29 @@ const ReactMarkdownContainer = styled.div`
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     padding-inline-start: 40px;
+  }
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+`;
+
+const StyledButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  background-color: #6ee7b7;
+  border-radius: 10px;
+  padding: 1rem;
+  border: unset;
+  font-weight: bolder;
+  font-size: 1rem;
+  cursor: pointer;
+  &:hover {
+    background-color: #34d399;
   }
 `;
 
