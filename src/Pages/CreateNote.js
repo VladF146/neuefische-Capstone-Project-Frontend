@@ -26,6 +26,19 @@ function CreateNote() {
 
     setIsLoading(true);
     setError(null);
+
+    if (title.trim().length === 0) {
+      setIsLoading(false);
+      setError("Title can't be empty!");
+      return;
+    }
+
+    if (content.trim().length === 0) {
+      setIsLoading(false);
+      setError("Content can't be empty!");
+      return;
+    }
+
     const response = await fetch(
       "https://neuefische-capstone-backend.herokuapp.com/api/notes",
       {
