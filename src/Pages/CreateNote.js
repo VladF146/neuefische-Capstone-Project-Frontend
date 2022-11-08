@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import Toggle from "../Components/Toggle";
 import { NotesContext, notesActionTypes } from "../Contexts/NotesContext";
 import { AuthenticationContext } from "../Contexts/AuthenticationContext";
 
@@ -9,6 +10,7 @@ function CreateNote() {
   const [content, setContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isMarkdown, setIsMarkdown] = useState(false);
   const { dispatch } = useContext(NotesContext);
   const { user } = useContext(AuthenticationContext);
 
@@ -53,8 +55,11 @@ function CreateNote() {
           onChange={(e) => setTitle(e.target.value)}
           value={title}
         />
+        <ContentHeader>
+          <StyledLabel>Content:</StyledLabel>
+          <Toggle toggleState={isMarkdown} setToggleState={setIsMarkdown} />
+        </ContentHeader>
 
-        <StyledLabel>Content:</StyledLabel>
         <StyledTextarea
           onChange={(e) => setContent(e.target.value)}
           value={content}
@@ -103,7 +108,7 @@ const StyledTextarea = styled.textarea`
   padding: 0.7rem;
   font-weight: bolder;
   font-size: 1rem;
-  min-height: 50%
+  min-height: 50%;
 `;
 
 const StyledButton = styled.button`
@@ -120,6 +125,12 @@ const StyledButton = styled.button`
   &:hover {
     background-color: #34d399;
   }
+`;
+
+const ContentHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export default CreateNote;
