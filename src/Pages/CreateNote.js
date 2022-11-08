@@ -1,14 +1,21 @@
 import styled from "styled-components";
+import ReactMarkdown from "react-markdown";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import Toggle from "../Components/Toggle";
 import { NotesContext, notesActionTypes } from "../Contexts/NotesContext";
 import { AuthenticationContext } from "../Contexts/AuthenticationContext";
+
+import "katex/dist/katex.min.css";
 
 function CreateNote() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isMarkdown, setIsMarkdown] = useState(true);
   const { dispatch } = useContext(NotesContext);
   const { user } = useContext(AuthenticationContext);
 
@@ -19,6 +26,19 @@ function CreateNote() {
 
     setIsLoading(true);
     setError(null);
+
+    if (title.trim().length === 0) {
+      setIsLoading(false);
+      setError("Title can't be empty!");
+      return;
+    }
+
+    if (content.trim().length === 0) {
+      setIsLoading(false);
+      setError("Content can't be empty!");
+      return;
+    }
+
     const response = await fetch(
       "https://neuefische-capstone-backend.herokuapp.com/api/notes",
       {
@@ -53,12 +73,28 @@ function CreateNote() {
           onChange={(e) => setTitle(e.target.value)}
           value={title}
         />
+        <ContentHeader>
+          <StyledLabel>Content:</StyledLabel>
+          <Toggle toggleState={isMarkdown} setToggleState={setIsMarkdown} />
+        </ContentHeader>
 
-        <StyledLabel>Content:</StyledLabel>
-        <StyledTextarea
-          onChange={(e) => setContent(e.target.value)}
-          value={content}
-        />
+        {isMarkdown && (
+          <StyledTextarea
+            onChange={(e) => setContent(e.target.value)}
+            value={content}
+          />
+        )}
+
+        {!isMarkdown && (
+          <ReactMarkdownContainer>
+            <ReactMarkdown
+              remarkPlugins={[remarkMath]}
+              rehypePlugins={[rehypeKatex]}
+            >
+              {content}
+            </ReactMarkdown>
+          </ReactMarkdownContainer>
+        )}
 
         <StyledButton disabled={isLoading} type="submit">
           Create note
@@ -74,17 +110,15 @@ const EditNotesContainer = styled.div`
   padding: 0 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   overflow-y: scroll;
 `;
 
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   gap: 1rem;
   width: 100%;
-  height: 100%;
 `;
 
 const StyledLabel = styled.label`
@@ -103,7 +137,31 @@ const StyledTextarea = styled.textarea`
   padding: 0.7rem;
   font-weight: bolder;
   font-size: 1rem;
-  min-height: 50%
+  height: 50%;
+`;
+
+const ReactMarkdownContainer = styled.div`
+  border-radius: 10px;
+  padding: 0.7rem;
+  height: 50%;
+  max-height: 50vh;
+  border: 1px solid black;
+  overflow-y: scroll;
+
+  img {
+    width: 80%;
+  }
+
+  ul,
+  ol {
+    display: block;
+    list-style-type: decimal;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+  }
 `;
 
 const StyledButton = styled.button`
@@ -120,6 +178,12 @@ const StyledButton = styled.button`
   &:hover {
     background-color: #34d399;
   }
+`;
+
+const ContentHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export default CreateNote;
