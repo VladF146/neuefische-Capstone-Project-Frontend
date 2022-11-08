@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { NotesContext, notesActionTypes } from "../Contexts/NotesContext";
@@ -36,19 +37,7 @@ function Home() {
             <li key={id}>
               <StyledLink to={`${id}`}>
                 <h2>{title}</h2>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                  />
-                </svg>
+                <ChevronRightIcon />
               </StyledLink>
             </li>
           ))}
@@ -92,14 +81,14 @@ const StyledLink = styled(Link)`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    flex-grow: 1
+    flex-grow: 1;
   }
 
   svg {
     width: 25px;
     font-weight: bolder;
     margin-bottom: 0.2rem;
-    flex-shrink: 0
+    flex-shrink: 0;
   }
 `;
 
