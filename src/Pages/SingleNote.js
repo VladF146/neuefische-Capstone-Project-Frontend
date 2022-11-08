@@ -3,16 +3,21 @@ import ReactMarkdown from "react-markdown";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Toggle from "../Components/Toggle";
 import { AuthenticationContext } from "../Contexts/AuthenticationContext";
+import { NotesContext, notesActionTypes } from "../Contexts/NotesContext";
 
 function SingleNote() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [isMarkdown, setIsMarkdown] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const { user } = useContext(AuthenticationContext);
+  const { dispatch } = useContext(NotesContext);
   const { noteId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchNote = async () => {
@@ -29,6 +34,50 @@ function SingleNote() {
 
     fetchNote();
   }, []);
+
+  const handleUpdate = async () => {
+    console.log("Hello1");
+    const response = await fetch(
+      `https://neuefische-capstone-backend.herokuapp.com/api/notes/${noteId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+        body: JSON.stringify({ title, content }),
+      }
+    );
+    const data = await response.json();
+
+    if (!response.ok) {
+      setIsLoading(false);
+      setError(data.error);
+    }
+    if (response.ok) {
+      dispatch({ type: notesActionTypes.UPDATE_SINGLE_NOTE, payload: data });
+      setIsLoading(false);
+      navigate("/");
+    }
+  };
+
+  const handleDelete = async () => {
+    const response = await fetch(
+      `https://neuefische-capstone-backend.herokuapp.com/api/notes/${noteId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+    );
+    const data = await response.json();
+
+    if (response.ok) {
+      dispatch({ type: notesActionTypes.DELETE_SINGLE_NOTE, payload: data });
+      navigate("/");
+    }
+  };
 
   return (
     <SingleNoteContainer>
@@ -55,6 +104,13 @@ function SingleNote() {
           </ReactMarkdown>
         </ReactMarkdownContainer>
       )}
+
+      <button type="button" onClick={() => handleUpdate()}>
+        Update note
+      </button>
+      <button type="button" onClick={handleDelete}>
+        Delete note
+      </button>
     </SingleNoteContainer>
   );
 }

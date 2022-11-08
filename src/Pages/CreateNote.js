@@ -21,7 +21,7 @@ function CreateNote() {
 
   const navigate = useNavigate();
 
-  const onSubmitHandler = async (event) => {
+  const handleCreateNote = async (event) => {
     event.preventDefault();
 
     setIsLoading(true);
@@ -66,7 +66,7 @@ function CreateNote() {
   return (
     <EditNotesContainer>
       <h1>Create new note</h1>
-      <StyledForm className="create" onSubmit={onSubmitHandler}>
+      <StyledForm className="create" onSubmit={handleCreateNote}>
         <StyledLabel>Title:</StyledLabel>
         <StyledInput
           type="text"
