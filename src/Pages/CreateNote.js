@@ -18,6 +18,7 @@ import {
 } from "./CreateNote.styles";
 
 import "katex/dist/katex.min.css";
+import { createSingleNote } from "../Services/fetchNotes";
 
 function CreateNote() {
   const [title, setTitle] = useState("");
@@ -48,18 +49,7 @@ function CreateNote() {
       return;
     }
 
-    const response = await fetch(
-      "https://neuefische-capstone-backend.herokuapp.com/api/notes",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-        body: JSON.stringify({ title, content }),
-      }
-    );
-    const data = await response.json();
+    const { response, data } = await createSingleNote(user, title, content);
 
     if (!response.ok) {
       setIsLoading(false);

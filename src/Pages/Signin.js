@@ -10,6 +10,7 @@ import {
   ErrorWrapper,
   StyledLink,
 } from "./Signin.styles";
+import { postSignin } from "../Services/fetchAuth";
 
 function Signin() {
   const [email, setEmail] = useState("");
@@ -25,15 +26,8 @@ function Signin() {
 
     setIsLoading(true);
     setError(null);
-    const response = await fetch(
-      "https://neuefische-capstone-backend.herokuapp.com/api/users/signin",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      }
-    );
-    const data = await response.json();
+
+    const { response, data } = await postSignin(email, password);
 
     if (!response.ok) {
       setIsLoading(false);

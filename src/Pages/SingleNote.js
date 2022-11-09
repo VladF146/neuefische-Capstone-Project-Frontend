@@ -17,6 +17,11 @@ import {
   StyledButton,
   ErrorWrapper,
 } from "./SingleNote.styles";
+import {
+  getSingleNote,
+  updateSingleNote,
+  deleteSingleNote,
+} from "../Services/fetchNotes";
 
 function SingleNote() {
   const [title, setTitle] = useState("");
@@ -31,33 +36,48 @@ function SingleNote() {
 
   useEffect(() => {
     const fetchNote = async () => {
-      const response = await fetch(
-        `https://neuefische-capstone-backend.herokuapp.com/api/notes/${noteId}`,
-        {
-          headers: { Authorization: `Bearer ${user.token}` },
-        }
-      );
-      const data = await response.json();
-      setTitle(data.title);
-      setContent(data.content);
+      setIsLoading(true);
+      setError(null);
+
+      const { response, data } = await getSingleNote(user, noteId);
+
+      if (!response.ok) {
+        setIsLoading(false);
+        setError(data.error);
+      }
+
+      if (response.ok) {
+        setIsLoading(false);
+        setTitle(data.title);
+        setContent(data.content);
+      }
     };
 
     fetchNote();
   }, []);
 
   const handleUpdate = async () => {
-    const response = await fetch(
-      `https://neuefische-capstone-backend.herokuapp.com/api/notes/${noteId}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-        body: JSON.stringify({ title, content }),
-      }
+    setIsLoading(true);
+    setError(null);
+
+    if (title.trim().length === 0) {
+      setIsLoading(false);
+      setError("Title can't be empty!");
+      return;
+    }
+
+    if (content.trim().length === 0) {
+      setIsLoading(false);
+      setError("Content can't be empty!");
+      return;
+    }
+
+    const { response, data } = await updateSingleNote(
+      user,
+      noteId,
+      title,
+      content
     );
-    const data = await response.json();
 
     if (!response.ok) {
       setIsLoading(false);
@@ -71,19 +91,19 @@ function SingleNote() {
   };
 
   const handleDelete = async () => {
-    const response = await fetch(
-      `https://neuefische-capstone-backend.herokuapp.com/api/notes/${noteId}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      }
-    );
-    const data = await response.json();
+    setIsLoading(true);
+    setError(null);
+
+    const { response, data } = await deleteSingleNote(user, noteId);
+
+    if (!response.ok) {
+      setIsLoading(false);
+      setError(data.error);
+    }
 
     if (response.ok) {
       dispatch({ type: notesActionTypes.DELETE_SINGLE_NOTE, payload: data });
+      setIsLoading(false);
       navigate("/");
     }
   };

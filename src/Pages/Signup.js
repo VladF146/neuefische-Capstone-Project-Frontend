@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthenticationContext } from "../Contexts/AuthenticationContext";
+import { postSignup } from "../Services/fetchAuth";
 import {
   SignupContainer,
   StyledForm,
@@ -25,15 +26,7 @@ function Signup() {
 
     setIsLoading(true);
     setError(null);
-    const response = await fetch(
-      "https://neuefische-capstone-backend.herokuapp.com/api/users/signup",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      }
-    );
-    const data = await response.json();
+    const { response, data } = await postSignup(email, password);
 
     if (!response.ok) {
       setIsLoading(false);

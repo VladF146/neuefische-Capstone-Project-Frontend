@@ -3,6 +3,7 @@ import { useContext, useEffect } from "react";
 import { NotesContext, notesActionTypes } from "../Contexts/NotesContext";
 import { AuthenticationContext } from "../Contexts/AuthenticationContext";
 import { HomeContainer, StyledList, StyledLink } from "./Home.styles";
+import { getAllNotes } from "../Services/fetchNotes";
 
 function Home() {
   const { notes, dispatch } = useContext(NotesContext);
@@ -10,13 +11,7 @@ function Home() {
 
   useEffect(() => {
     const fetchNotes = async () => {
-      const response = await fetch(
-        "https://neuefische-capstone-backend.herokuapp.com/api/notes",
-        {
-          headers: { Authorization: `Bearer ${user.token}` },
-        }
-      );
-      const data = await response.json();
+      const { response, data } = await getAllNotes(user);
 
       if (response.ok) {
         dispatch({ type: notesActionTypes.GET_ALL_NOTES, payload: data });
