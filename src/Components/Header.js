@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { ArrowUturnLeftIcon } from "@heroicons/react/24/solid";
+import { StyledHeader, BackButton } from "./Header.styles";
 
 function Header() {
   const { noteId } = useParams();
@@ -17,30 +17,5 @@ function Header() {
     </StyledHeader>
   );
 }
-
-const StyledHeader = styled.header`
-  padding: 1rem;
-  background-color: #6ee7b7;
-  text-align: center;
-  display: flex;
-  align-items: center;
-`;
-
-const BackButton = styled.button`
-  background-color: transparent;
-  border: unset;
-
-  svg {
-    width: 20px;
-    font-weight: bolder;
-    margin-bottom: 0.2rem;
-    cursor: pointer;
-    color: black;
-
-    &:hover {
-      color: white;
-    }
-  }
-`;
 
 export default Header;

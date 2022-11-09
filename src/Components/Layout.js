@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
-import styled from "styled-components";
 import Navbar from "./Navbar";
 import Header from "./Header";
+import LayoutContainer from "./Layout.styles";
 
 function Layout() {
   return (
@@ -12,11 +12,5 @@ function Layout() {
     </LayoutContainer>
   );
 }
-
-const LayoutContainer = styled.div`
-height: 100%;
-width: 100%;
-display: flex;
-flex-direction: column;`
 
 export default Layout;
