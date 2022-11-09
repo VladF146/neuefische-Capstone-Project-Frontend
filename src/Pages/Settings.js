@@ -1,5 +1,8 @@
 import { useContext } from "react";
-import { AuthenticationContext } from "../Contexts/AuthenticationContext";
+import {
+  AuthenticationContext,
+  authActionTypes,
+} from "../Contexts/AuthenticationContext";
 import { SettingsContainer, StyledButton } from "./Settings.styles";
 
 function Settings() {
@@ -7,7 +10,7 @@ function Settings() {
 
   const handleSignout = () => {
     localStorage.removeItem("user");
-    dispatch({ type: "SIGNOUT" });
+    dispatch({ type: authActionTypes.SIGNOUT });
   };
 
   return (

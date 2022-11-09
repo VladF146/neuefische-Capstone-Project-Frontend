@@ -46,3 +46,10 @@ export const StyledLink = styled(Link)`
     flex-shrink: 0;
   }
 `;
+
+export const ErrorWrapper = styled.div`
+  border-radius: 10px;
+  background-color: #fecaca;
+  padding: 1rem;
+  text-align: center;
+`;

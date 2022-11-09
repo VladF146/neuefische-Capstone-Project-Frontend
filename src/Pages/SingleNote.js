@@ -44,9 +44,7 @@ function SingleNote() {
       if (!response.ok) {
         setIsLoading(false);
         setError(data.error);
-      }
-
-      if (response.ok) {
+      } else {
         setIsLoading(false);
         setTitle(data.title);
         setContent(data.content);
@@ -82,8 +80,7 @@ function SingleNote() {
     if (!response.ok) {
       setIsLoading(false);
       setError(data.error);
-    }
-    if (response.ok) {
+    } else {
       dispatch({ type: notesActionTypes.UPDATE_SINGLE_NOTE, payload: data });
       setIsLoading(false);
       navigate("/");
@@ -99,9 +96,7 @@ function SingleNote() {
     if (!response.ok) {
       setIsLoading(false);
       setError(data.error);
-    }
-
-    if (response.ok) {
+    } else {
       dispatch({ type: notesActionTypes.DELETE_SINGLE_NOTE, payload: data });
       setIsLoading(false);
       navigate("/");

@@ -1,6 +1,9 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthenticationContext } from "../Contexts/AuthenticationContext";
+import {
+  AuthenticationContext,
+  authActionTypes,
+} from "../Contexts/AuthenticationContext";
 import { postSignup } from "../Services/fetchAuth";
 import {
   SignupContainer,
@@ -26,15 +29,15 @@ function Signup() {
 
     setIsLoading(true);
     setError(null);
+
     const { response, data } = await postSignup(email, password);
 
     if (!response.ok) {
       setIsLoading(false);
       setError(data.error);
-    }
-    if (response.ok) {
+    } else {
       localStorage.setItem("user", JSON.stringify(data));
-      dispatch({ type: "SIGNIN", payload: data });
+      dispatch({ type: authActionTypes.SIGNIN, payload: data });
       setIsLoading(false);
       navigate("/", { replace: true });
     }

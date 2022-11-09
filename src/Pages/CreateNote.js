@@ -54,8 +54,7 @@ function CreateNote() {
     if (!response.ok) {
       setIsLoading(false);
       setError(data.error);
-    }
-    if (response.ok) {
+    } else {
       dispatch({ type: notesActionTypes.POST_SINGLE_NOTE, payload: data });
       setIsLoading(false);
       navigate("/");
