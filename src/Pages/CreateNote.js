@@ -44,16 +44,18 @@ function CreateNote() {
 
   return (
     <Styled.Container>
-      <h1>Create new note</h1>
       <Styled.Form className="create" onSubmit={handleCreateNote}>
-        <Styled.Label>Title:</Styled.Label>
-        <Styled.Input
-          type="text"
-          onChange={(e) => setTitle(e.target.value)}
-          value={title}
-        />
+
         <Styled.ContentHeader>
-          <Styled.Label>Content:</Styled.Label>
+          {isMarkdown && (
+          <Styled.Input
+            type="text"
+            onChange={(e) => setTitle(e.target.value)}
+            value={title}
+            placeholder="Note title..."
+          />
+          )}
+          {!isMarkdown && <Styled.Title>{title}</Styled.Title>}
           <Toggle toggleState={isMarkdown} setToggleState={setIsMarkdown} />
         </Styled.ContentHeader>
 
@@ -61,6 +63,7 @@ function CreateNote() {
           <Styled.Textarea
             onChange={(e) => setContent(e.target.value)}
             value={content}
+            placeholder="Note content..."
           />
         )}
 
