@@ -30,7 +30,10 @@ function AuthenticationContextProvider({ children }) {
     }
   }, [dispatch]);
 
-  const memoizedValue = useMemo(() => ({ ...state, dispatch }), []);
+  const memoizedValue = useMemo(
+    () => ({ ...state, dispatch }),
+    [state, dispatch],
+  );
 
   return (
     <AuthenticationContext.Provider value={memoizedValue}>
