@@ -8,16 +8,18 @@ const GlobalStyles = createGlobalStyle`
 }
 
 html {
-    height: 100vh;
+    height: 100%;
 }
 
 body {
     height: 100%;
-    font-family: sans-serif;
+    font-family: monospace;
 }
 
 #root, .App {
     height: 100%;
-}`;
+}
+
+`;
 
 export default GlobalStyles;
