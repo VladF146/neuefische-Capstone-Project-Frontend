@@ -10,7 +10,7 @@ function Navbar() {
     <Styled.Navbar>
       <ul>
         <li>
-          <Styled.NavLink to="/notes" end>
+          <Styled.NavLink to="/notes">
             <Square3Stack3DIcon />
             Notes
           </Styled.NavLink>
