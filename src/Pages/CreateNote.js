@@ -1,10 +1,8 @@
-import ReactMarkdown from "react-markdown";
-import remarkMath from "remark-math";
-import rehypeKatex from "rehype-katex";
 import { useState, useContext } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import Toggle from "../Components/Toggle";
+import ReactMarkdownForMath from "../Components/ReactMarkdownForMath";
 import { NotesContext, notesActionTypes } from "../Contexts/NotesContext";
 import { AuthenticationContext } from "../Contexts/AuthenticationContext";
 import Styled from "./CreateNote.styles";
@@ -39,9 +37,6 @@ function CreateNote() {
 
   const handleCreateNote = async (event) => {
     event.preventDefault();
-    if (title.trim().length === 0 || content.trim().length === 0) {
-      return;
-    }
     refetch();
   };
 
@@ -69,19 +64,16 @@ function CreateNote() {
 
         {!isMarkdown && (
           <Styled.ReactMarkdownContainer>
-            <ReactMarkdown
-              remarkPlugins={[remarkMath]}
-              rehypePlugins={[rehypeKatex]}
-            >
-              {content}
-            </ReactMarkdown>
+            <ReactMarkdownForMath>{content}</ReactMarkdownForMath>
           </Styled.ReactMarkdownContainer>
         )}
 
         <Styled.Button disabled={isLoading} type="submit">
           Create note
         </Styled.Button>
-        {isError && <div className="error">{error.response.data.error}</div>}
+        {isError && (
+          <Styled.ErrorWrapper>{error.response.data.error}</Styled.ErrorWrapper>
+        )}
       </Styled.Form>
     </Styled.Container>
   );

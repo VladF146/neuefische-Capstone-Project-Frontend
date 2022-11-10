@@ -1,10 +1,8 @@
-import ReactMarkdown from "react-markdown";
-import remarkMath from "remark-math";
-import rehypeKatex from "rehype-katex";
 import { useState, useContext } from "react";
 import { useQuery } from "react-query";
 import { useParams, useNavigate } from "react-router-dom";
 import Toggle from "../Components/Toggle";
+import ReactMarkdownForMath from "../Components/ReactMarkdownForMath";
 import { AuthenticationContext } from "../Contexts/AuthenticationContext";
 import { NotesContext, notesActionTypes } from "../Contexts/NotesContext";
 import Styled from "./SingleNote.styles";
@@ -76,9 +74,6 @@ function SingleNote() {
   );
 
   const handleUpdate = async () => {
-    if (title.trim().length === 0 || content.trim().length === 0) {
-      return;
-    }
     refetchUpdate();
   };
 
@@ -103,12 +98,7 @@ function SingleNote() {
 
       {!isMarkdown && (
         <Styled.ReactMarkdownContainer>
-          <ReactMarkdown
-            remarkPlugins={[remarkMath]}
-            rehypePlugins={[rehypeKatex]}
-          >
-            {content}
-          </ReactMarkdown>
+          <ReactMarkdownForMath>{content}</ReactMarkdownForMath>
         </Styled.ReactMarkdownContainer>
       )}
       {isError ||

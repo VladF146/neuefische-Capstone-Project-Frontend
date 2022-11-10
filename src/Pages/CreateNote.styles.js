@@ -83,4 +83,11 @@ Styled.ContentHeader = styled.div`
   align-items: center;
 `;
 
+Styled.ErrorWrapper = styled.div`
+  border-radius: 10px;
+  background-color: #fecaca;
+  padding: 1rem;
+  text-align: center;
+`;
+
 export default Styled;
