@@ -2,6 +2,7 @@ import ReactMarkdown from "react-markdown";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import { useState, useContext } from "react";
+import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import Toggle from "../Components/Toggle";
 import { NotesContext, notesActionTypes } from "../Contexts/NotesContext";
@@ -14,42 +15,34 @@ import { createSingleNote } from "../Services/fetchNotes";
 function CreateNote() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [isMarkdown, setIsMarkdown] = useState(true);
   const { dispatch } = useContext(NotesContext);
   const { user } = useContext(AuthenticationContext);
 
   const navigate = useNavigate();
 
+  const { isLoading, isError, error, refetch } = useQuery(
+    "post-single-note",
+    () => createSingleNote(user, title, content),
+    {
+      enabled: false,
+      retry: 0,
+      onSuccess: (data) => {
+        dispatch({
+          type: notesActionTypes.POST_SINGLE_NOTE,
+          payload: data.data,
+        });
+        navigate(`/notes/${data.data._id}`);
+      },
+    }
+  );
+
   const handleCreateNote = async (event) => {
     event.preventDefault();
-
-    setIsLoading(true);
-    setError(null);
-
-    if (title.trim().length === 0) {
-      setIsLoading(false);
-      setError("Title can't be empty!");
+    if (title.trim().length === 0 || content.trim().length === 0) {
       return;
     }
-
-    if (content.trim().length === 0) {
-      setIsLoading(false);
-      setError("Content can't be empty!");
-      return;
-    }
-
-    const { response, data } = await createSingleNote(user, title, content);
-
-    if (!response.ok) {
-      setIsLoading(false);
-      setError(data.error);
-    } else {
-      dispatch({ type: notesActionTypes.POST_SINGLE_NOTE, payload: data });
-      setIsLoading(false);
-      navigate("/");
-    }
+    refetch();
   };
 
   return (
@@ -88,7 +81,7 @@ function CreateNote() {
         <Styled.Button disabled={isLoading} type="submit">
           Create note
         </Styled.Button>
-        {error && <div className="error">{error}</div>}
+        {isError && <div className="error">{error.response.data.error}</div>}
       </Styled.Form>
     </Styled.Container>
   );

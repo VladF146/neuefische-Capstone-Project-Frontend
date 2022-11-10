@@ -1,7 +1,8 @@
 import ReactMarkdown from "react-markdown";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
+import { useQuery } from "react-query";
 import { useParams, useNavigate } from "react-router-dom";
 import Toggle from "../Components/Toggle";
 import { AuthenticationContext } from "../Contexts/AuthenticationContext";
@@ -17,80 +18,72 @@ function SingleNote() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [isMarkdown, setIsMarkdown] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
   const { user } = useContext(AuthenticationContext);
   const { dispatch } = useContext(NotesContext);
   const { noteId } = useParams();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchNote = async () => {
-      setIsLoading(true);
-      setError(null);
+  const { isLoading, isError, error } = useQuery(
+    ["get-single-note", noteId],
+    () => getSingleNote(user, noteId),
+    {
+      onSuccess: (data) => {
+        setTitle(data.data.title);
+        setContent(data.data.content);
+      },
+    }
+  );
 
-      const { response, data } = await getSingleNote(user, noteId);
+  const {
+    isLoading: isLoadingUpdate,
+    isError: isErrorUpdate,
+    error: errorUpdate,
+    refetch: refetchUpdate,
+  } = useQuery(
+    ["update-single-note", noteId],
+    () => updateSingleNote(user, noteId, title, content),
+    {
+      enabled: false,
+      retry: 0,
+      onSuccess: (data) => {
+        dispatch({
+          type: notesActionTypes.UPDATE_SINGLE_NOTE,
+          payload: data.data,
+        });
+      },
+    }
+  );
 
-      if (!response.ok) {
-        setIsLoading(false);
-        setError(data.error);
-      } else {
-        setIsLoading(false);
-        setTitle(data.title);
-        setContent(data.content);
-      }
-    };
-
-    fetchNote();
-  }, []);
+  const {
+    isLoading: isLoadingDelete,
+    isError: isErrorDelete,
+    error: errorDelete,
+    refetch: refetchDelete,
+  } = useQuery(
+    ["delete-single-note", noteId],
+    () => deleteSingleNote(user, noteId),
+    {
+      enabled: false,
+      retry: 0,
+      onSuccess: (data) => {
+        dispatch({
+          type: notesActionTypes.DELETE_SINGLE_NOTE,
+          payload: data.data,
+        });
+        navigate("/", { replace: true });
+      },
+    }
+  );
 
   const handleUpdate = async () => {
-    setIsLoading(true);
-    setError(null);
-
-    if (title.trim().length === 0) {
-      setIsLoading(false);
-      setError("Title can't be empty!");
+    if (title.trim().length === 0 || content.trim().length === 0) {
       return;
     }
-
-    if (content.trim().length === 0) {
-      setIsLoading(false);
-      setError("Content can't be empty!");
-      return;
-    }
-
-    const { response, data } = await updateSingleNote(
-      user,
-      noteId,
-      title,
-      content
-    );
-
-    if (!response.ok) {
-      setIsLoading(false);
-      setError(data.error);
-    } else {
-      dispatch({ type: notesActionTypes.UPDATE_SINGLE_NOTE, payload: data });
-      setIsLoading(false);
-      navigate("/");
-    }
+    refetchUpdate();
   };
 
   const handleDelete = async () => {
-    setIsLoading(true);
-    setError(null);
-
-    const { response, data } = await deleteSingleNote(user, noteId);
-
-    if (!response.ok) {
-      setIsLoading(false);
-      setError(data.error);
-    } else {
-      dispatch({ type: notesActionTypes.DELETE_SINGLE_NOTE, payload: data });
-      setIsLoading(false);
-      navigate("/");
-    }
+    refetchDelete();
   };
 
   return (
@@ -118,18 +111,26 @@ function SingleNote() {
           </ReactMarkdown>
         </Styled.ReactMarkdownContainer>
       )}
-      {error && <Styled.ErrorWrapper>{error}</Styled.ErrorWrapper>}
+      {isError ||
+        isErrorUpdate ||
+        (isErrorDelete && (
+          <Styled.ErrorWrapper>
+            {error.response.data.error ||
+              errorUpdate.response.data.error ||
+              errorDelete.response.data.error}
+          </Styled.ErrorWrapper>
+        ))}
       <Styled.ButtonContainer>
         <Styled.Button
           type="button"
-          disabled={isLoading}
+          disabled={isLoading || isLoadingUpdate || isLoadingDelete}
           onClick={() => handleUpdate()}
         >
           Update note
         </Styled.Button>
         <Styled.Button
           type="button"
-          disabled={isLoading}
+          disabled={isLoading || isLoadingUpdate || isLoadingDelete}
           onClick={handleDelete}
         >
           Delete note

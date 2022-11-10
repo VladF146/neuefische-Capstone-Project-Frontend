@@ -1,35 +1,24 @@
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
+import { useQuery } from "react-query";
 import { NotesContext, notesActionTypes } from "../Contexts/NotesContext";
 import { AuthenticationContext } from "../Contexts/AuthenticationContext";
 import Styled from "./Home.styles";
 import { getAllNotes } from "../Services/fetchNotes";
 
 function Home() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
   const { notes, dispatch } = useContext(NotesContext);
   const { user } = useContext(AuthenticationContext);
 
-  useEffect(() => {
-    const fetchNotes = async () => {
-      setIsLoading(true);
-      setError(null);
-      const { response, data } = await getAllNotes(user);
-
-      if (!response.ok) {
-        setIsLoading(false);
-        setError(data.error);
-      } else {
-        dispatch({ type: notesActionTypes.GET_ALL_NOTES, payload: data });
-        setIsLoading(false);
-      }
-    };
-
-    if (user) {
-      fetchNotes();
+  const { isLoading, isError, error } = useQuery(
+    "signin",
+    () => getAllNotes(user),
+    {
+      onSuccess: (data) => {
+        dispatch({ type: notesActionTypes.GET_ALL_NOTES, payload: data.data });
+      },
     }
-  }, [user, dispatch]);
+  );
 
   return (
     <Styled.Container>
@@ -45,7 +34,9 @@ function Home() {
           ))}
       </Styled.List>
       {isLoading && "Loading ..."}
-      {error && <Styled.ErrorWrapper>{error}</Styled.ErrorWrapper>}
+      {isError && (
+        <Styled.ErrorWrapper>{error.response.data.error}</Styled.ErrorWrapper>
+      )}
     </Styled.Container>
   );
 }
