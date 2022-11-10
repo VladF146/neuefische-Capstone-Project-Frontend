@@ -2,12 +2,7 @@ import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { useContext, useEffect, useState } from "react";
 import { NotesContext, notesActionTypes } from "../Contexts/NotesContext";
 import { AuthenticationContext } from "../Contexts/AuthenticationContext";
-import {
-  HomeContainer,
-  StyledList,
-  StyledLink,
-  ErrorWrapper,
-} from "./Home.styles";
+import Styled from "./Home.styles";
 import { getAllNotes } from "../Services/fetchNotes";
 
 function Home() {
@@ -37,21 +32,21 @@ function Home() {
   }, [user, dispatch]);
 
   return (
-    <HomeContainer>
-      <StyledList>
+    <Styled.Container>
+      <Styled.List>
         {notes &&
           notes.map(({ title, _id: id }) => (
             <li key={id}>
-              <StyledLink to={`${id}`}>
+              <Styled.LinkWrapper to={`${id}`}>
                 <h2>{title}</h2>
                 <ChevronRightIcon />
-              </StyledLink>
+              </Styled.LinkWrapper>
             </li>
           ))}
-      </StyledList>
+      </Styled.List>
       {isLoading && "Loading ..."}
-      {error && <ErrorWrapper>{error}</ErrorWrapper>}
-    </HomeContainer>
+      {error && <Styled.ErrorWrapper>{error}</Styled.ErrorWrapper>}
+    </Styled.Container>
   );
 }
 

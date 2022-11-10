@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
-export const ToggleContainer = styled.div`
+const Styled = {};
+
+Styled.ToggleContainer = styled.div`
   display: flex;
   padding: 0.125rem;
   margin-left: 0.25rem;
   border-radius: 0.5rem;
   background-color: #f8fafc;
 `;
-export const ToggleButton = styled.button`
+Styled.ToggleButton = styled.button`
   display: flex;
   padding: 0.5rem;
   background-color: ${({ activated }) => (activated ? "#ffffff" : "#f8fafc")};
@@ -29,3 +31,5 @@ export const ToggleButton = styled.button`
     height: 1.25rem;
   }
 `;
+
+export default Styled;

@@ -5,15 +5,7 @@ import {
   authActionTypes,
 } from "../Contexts/AuthenticationContext";
 import { postSignup } from "../Services/fetchAuth";
-import {
-  SignupContainer,
-  StyledForm,
-  StyledLabel,
-  StyledInput,
-  StyledButton,
-  ErrorWrapper,
-  StyledLink,
-} from "./Signup.styles";
+import Styled from "./Auth.styles";
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -44,12 +36,12 @@ function Signup() {
   };
 
   return (
-    <SignupContainer>
+    <Styled.Container>
       <h1>Signup</h1>
-      <StyledForm onSubmit={handleSignup}>
+      <Styled.Form onSubmit={handleSignup}>
         <div>
-          <StyledLabel htmlFor="email">Email:</StyledLabel>
-          <StyledInput
+          <Styled.Label htmlFor="email">Email:</Styled.Label>
+          <Styled.Input
             id="email"
             type="email"
             value={email}
@@ -57,8 +49,8 @@ function Signup() {
           />
         </div>
         <div>
-          <StyledLabel htmlFor="password">Password:</StyledLabel>
-          <StyledInput
+          <Styled.Label htmlFor="password">Password:</Styled.Label>
+          <Styled.Input
             id="password"
             type="password"
             value={password}
@@ -66,13 +58,13 @@ function Signup() {
           />
         </div>
 
-        <StyledButton disabled={isLoading} type="submit">
+        <Styled.Button disabled={isLoading} type="submit">
           Signup
-        </StyledButton>
-        {error && <ErrorWrapper>{error}</ErrorWrapper>}
-      </StyledForm>
-      <StyledLink to="/signin">Signin</StyledLink>
-    </SignupContainer>
+        </Styled.Button>
+        {error && <Styled.ErrorWrapper>{error}</Styled.ErrorWrapper>}
+      </Styled.Form>
+      <Styled.LinkWrapper to="/signin">Signin</Styled.LinkWrapper>
+    </Styled.Container>
   );
 }
 

@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const SigninContainer = styled.div`
+const Styled = {};
+
+Styled.Container = styled.div`
   height: 100%;
   width: 100%;
   padding: 0 1rem;
@@ -15,7 +17,7 @@ export const SigninContainer = styled.div`
   }
 `;
 
-export const StyledForm = styled.form`
+Styled.Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -27,19 +29,19 @@ export const StyledForm = styled.form`
   }
 `;
 
-export const StyledLabel = styled.label`
+Styled.Label = styled.label`
   font-size: 1rem;
   margin-bottom: 0.5rem;
 `;
 
-export const StyledInput = styled.input`
+Styled.Input = styled.input`
   border-radius: 10px;
   padding: 0.7rem;
   font-weight: bolder;
   font-size: 1rem;
 `;
 
-export const StyledButton = styled.button`
+Styled.Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,14 +57,14 @@ export const StyledButton = styled.button`
   }
 `;
 
-export const ErrorWrapper = styled.div`
+Styled.ErrorWrapper = styled.div`
   border-radius: 10px;
   background-color: #fecaca;
   padding: 1rem;
   text-align: center;
 `;
 
-export const StyledLink = styled(Link)`
+Styled.LinkWrapper = styled(Link)`
   margin-top: 2rem;
   text-decoration: none;
   font-weight: bolder;
@@ -74,3 +76,5 @@ export const StyledLink = styled(Link)`
     color: #34d399;
   }
 `;
+
+export default Styled;

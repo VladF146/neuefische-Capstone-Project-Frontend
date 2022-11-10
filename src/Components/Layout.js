@@ -1,15 +1,15 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
 import Header from "./Header";
-import LayoutContainer from "./Layout.styles";
+import Styled from "./Layout.styles";
 
 function Layout() {
   return (
-    <LayoutContainer>
+    <Styled.LayoutContainer>
       <Header />
       <Outlet />
       <Navbar />
-    </LayoutContainer>
+    </Styled.LayoutContainer>
   );
 }
 

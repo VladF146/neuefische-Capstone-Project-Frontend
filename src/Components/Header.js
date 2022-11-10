@@ -1,20 +1,20 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowUturnLeftIcon } from "@heroicons/react/24/solid";
-import { StyledHeader, BackButton } from "./Header.styles";
+import Styled from "./Header.styles";
 
 function Header() {
   const { noteId } = useParams();
   const navigate = useNavigate();
 
   return (
-    <StyledHeader>
+    <Styled.Header>
       {noteId && (
-        <BackButton onClick={() => navigate(-1)}>
+        <Styled.BackButton onClick={() => navigate(-1)}>
           <ArrowUturnLeftIcon />
-        </BackButton>
+        </Styled.BackButton>
       )}
       {!noteId && "Header"}
-    </StyledHeader>
+    </Styled.Header>
   );
 }
 

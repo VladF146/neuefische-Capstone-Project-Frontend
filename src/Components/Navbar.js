@@ -3,32 +3,32 @@ import {
   PlusCircleIcon,
   AdjustmentsHorizontalIcon,
 } from "@heroicons/react/24/outline";
-import { StyledNavbar, StyleNavLink } from "./Navbar.styles";
+import Styled from "./Navbar.styles";
 
 function Navbar() {
   return (
-    <StyledNavbar>
+    <Styled.Navbar>
       <ul>
         <li>
-          <StyleNavLink to="/notes" end>
+          <Styled.NavLink to="/notes" end>
             <Square3Stack3DIcon />
             Notes
-          </StyleNavLink>
+          </Styled.NavLink>
         </li>
         <li>
-          <StyleNavLink to="/create">
+          <Styled.NavLink to="/create">
             <PlusCircleIcon />
             Create
-          </StyleNavLink>
+          </Styled.NavLink>
         </li>
         <li>
-          <StyleNavLink to="/settings">
+          <Styled.NavLink to="/settings">
             <AdjustmentsHorizontalIcon />
             Settings
-          </StyleNavLink>
+          </Styled.NavLink>
         </li>
       </ul>
-    </StyledNavbar>
+    </Styled.Navbar>
   );
 }
 

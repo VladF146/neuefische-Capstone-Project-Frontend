@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const HomeContainer = styled.div`
+const Styled = {};
+
+Styled.Container = styled.div`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -10,7 +12,7 @@ export const HomeContainer = styled.div`
   overflow-y: scroll;
 `;
 
-export const StyledList = styled.ul`
+Styled.List = styled.ul`
   height: 100%;
   width: 100%;
 
@@ -24,7 +26,7 @@ export const StyledList = styled.ul`
   }
 `;
 
-export const StyledLink = styled(Link)`
+Styled.LinkWrapper = styled(Link)`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -47,9 +49,11 @@ export const StyledLink = styled(Link)`
   }
 `;
 
-export const ErrorWrapper = styled.div`
+Styled.ErrorWrapper = styled.div`
   border-radius: 10px;
   background-color: #fecaca;
   padding: 1rem;
   text-align: center;
 `;
+
+export default Styled;

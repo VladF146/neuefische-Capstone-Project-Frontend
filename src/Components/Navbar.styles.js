@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-export const StyledNavbar = styled.nav`
+const Styled = {};
+
+Styled.Navbar = styled.nav`
   background-color: #6ee7b7;
 
   ul {
@@ -20,7 +22,7 @@ export const StyledNavbar = styled.nav`
   }
 `;
 
-export const StyleNavLink = styled(NavLink)`
+Styled.NavLink = styled(NavLink)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,3 +43,5 @@ export const StyleNavLink = styled(NavLink)`
     background-color: #34d399;
   }
 `;
+
+export default Styled;

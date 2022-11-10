@@ -6,17 +6,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Toggle from "../Components/Toggle";
 import { AuthenticationContext } from "../Contexts/AuthenticationContext";
 import { NotesContext, notesActionTypes } from "../Contexts/NotesContext";
-import {
-  SingleNoteContainer,
-  Title,
-  ContentHeader,
-  StyledLabel,
-  StyledTextarea,
-  ReactMarkdownContainer,
-  ButtonContainer,
-  StyledButton,
-  ErrorWrapper,
-} from "./SingleNote.styles";
+import Styled from "./SingleNote.styles";
 import {
   getSingleNote,
   updateSingleNote,
@@ -104,44 +94,48 @@ function SingleNote() {
   };
 
   return (
-    <SingleNoteContainer>
-      <Title>{title}</Title>
-      <ContentHeader>
-        <StyledLabel>Content:</StyledLabel>
+    <Styled.Container>
+      <Styled.Title>{title}</Styled.Title>
+      <Styled.ContentHeader>
+        <Styled.Label>Content:</Styled.Label>
         <Toggle toggleState={isMarkdown} setToggleState={setIsMarkdown} />
-      </ContentHeader>
+      </Styled.ContentHeader>
 
       {isMarkdown && (
-        <StyledTextarea
+        <Styled.Textarea
           onChange={(e) => setContent(e.target.value)}
           value={content}
         />
       )}
 
       {!isMarkdown && (
-        <ReactMarkdownContainer>
+        <Styled.ReactMarkdownContainer>
           <ReactMarkdown
             remarkPlugins={[remarkMath]}
             rehypePlugins={[rehypeKatex]}
           >
             {content}
           </ReactMarkdown>
-        </ReactMarkdownContainer>
+        </Styled.ReactMarkdownContainer>
       )}
-      {error && <ErrorWrapper>{error}</ErrorWrapper>}
-      <ButtonContainer>
-        <StyledButton
+      {error && <Styled.ErrorWrapper>{error}</Styled.ErrorWrapper>}
+      <Styled.ButtonContainer>
+        <Styled.Button
           type="button"
           disabled={isLoading}
           onClick={() => handleUpdate()}
         >
           Update note
-        </StyledButton>
-        <StyledButton type="button" disabled={isLoading} onClick={handleDelete}>
+        </Styled.Button>
+        <Styled.Button
+          type="button"
+          disabled={isLoading}
+          onClick={handleDelete}
+        >
           Delete note
-        </StyledButton>
-      </ButtonContainer>
-    </SingleNoteContainer>
+        </Styled.Button>
+      </Styled.ButtonContainer>
+    </Styled.Container>
   );
 }
 

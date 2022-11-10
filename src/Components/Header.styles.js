@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const StyledHeader = styled.header`
+const Styled = {};
+
+Styled.Header = styled.header`
   padding: 1rem;
   background-color: #6ee7b7;
   text-align: center;
@@ -8,7 +10,7 @@ export const StyledHeader = styled.header`
   align-items: center;
 `;
 
-export const BackButton = styled.button`
+Styled.BackButton = styled.button`
   background-color: transparent;
   border: unset;
 
@@ -24,3 +26,5 @@ export const BackButton = styled.button`
     }
   }
 `;
+
+export default Styled;

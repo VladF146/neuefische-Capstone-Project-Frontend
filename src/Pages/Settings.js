@@ -3,7 +3,7 @@ import {
   AuthenticationContext,
   authActionTypes,
 } from "../Contexts/AuthenticationContext";
-import { SettingsContainer, StyledButton } from "./Settings.styles";
+import Styled from "./Settings.styles";
 
 function Settings() {
   const { user, dispatch } = useContext(AuthenticationContext);
@@ -14,12 +14,12 @@ function Settings() {
   };
 
   return (
-    <SettingsContainer>
+    <Styled.Container>
       <h1>{user.email}</h1>
-      <StyledButton type="button" onClick={handleSignout}>
+      <Styled.Button type="button" onClick={handleSignout}>
         Signout
-      </StyledButton>
-    </SettingsContainer>
+      </Styled.Button>
+    </Styled.Container>
   );
 }
 

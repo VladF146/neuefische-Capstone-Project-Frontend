@@ -6,16 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Toggle from "../Components/Toggle";
 import { NotesContext, notesActionTypes } from "../Contexts/NotesContext";
 import { AuthenticationContext } from "../Contexts/AuthenticationContext";
-import {
-  CreateNoteContainer,
-  StyledForm,
-  StyledLabel,
-  StyledInput,
-  StyledTextarea,
-  ReactMarkdownContainer,
-  StyledButton,
-  ContentHeader,
-} from "./CreateNote.styles";
+import Styled from "./CreateNote.styles";
 
 import "katex/dist/katex.min.css";
 import { createSingleNote } from "../Services/fetchNotes";
@@ -62,44 +53,44 @@ function CreateNote() {
   };
 
   return (
-    <CreateNoteContainer>
+    <Styled.Container>
       <h1>Create new note</h1>
-      <StyledForm className="create" onSubmit={handleCreateNote}>
-        <StyledLabel>Title:</StyledLabel>
-        <StyledInput
+      <Styled.Form className="create" onSubmit={handleCreateNote}>
+        <Styled.Label>Title:</Styled.Label>
+        <Styled.Input
           type="text"
           onChange={(e) => setTitle(e.target.value)}
           value={title}
         />
-        <ContentHeader>
-          <StyledLabel>Content:</StyledLabel>
+        <Styled.ContentHeader>
+          <Styled.Label>Content:</Styled.Label>
           <Toggle toggleState={isMarkdown} setToggleState={setIsMarkdown} />
-        </ContentHeader>
+        </Styled.ContentHeader>
 
         {isMarkdown && (
-          <StyledTextarea
+          <Styled.Textarea
             onChange={(e) => setContent(e.target.value)}
             value={content}
           />
         )}
 
         {!isMarkdown && (
-          <ReactMarkdownContainer>
+          <Styled.ReactMarkdownContainer>
             <ReactMarkdown
               remarkPlugins={[remarkMath]}
               rehypePlugins={[rehypeKatex]}
             >
               {content}
             </ReactMarkdown>
-          </ReactMarkdownContainer>
+          </Styled.ReactMarkdownContainer>
         )}
 
-        <StyledButton disabled={isLoading} type="submit">
+        <Styled.Button disabled={isLoading} type="submit">
           Create note
-        </StyledButton>
+        </Styled.Button>
         {error && <div className="error">{error}</div>}
-      </StyledForm>
-    </CreateNoteContainer>
+      </Styled.Form>
+    </Styled.Container>
   );
 }
 

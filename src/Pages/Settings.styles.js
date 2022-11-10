@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const SettingsContainer = styled.div`
+const Styled = {};
+
+Styled.Container = styled.div`
   flex-grow: 1;
   padding: 0 1rem;
   display: flex;
@@ -14,7 +16,7 @@ export const SettingsContainer = styled.div`
   }
 `;
 
-export const StyledButton = styled.button`
+Styled.Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,3 +31,5 @@ export const StyledButton = styled.button`
     background-color: #34d399;
   }
 `;
+
+export default Styled;

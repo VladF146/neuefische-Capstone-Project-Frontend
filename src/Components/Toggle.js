@@ -1,24 +1,24 @@
 import { EyeIcon, CodeBracketIcon } from "@heroicons/react/24/outline";
-import { ToggleContainer, ToggleButton } from "./Toggle.styles";
+import Styled from "./Toggle.styles";
 
 function Toggle({ toggleState, setToggleState }) {
   return (
-    <ToggleContainer>
-      <ToggleButton
+    <Styled.ToggleContainer>
+      <Styled.ToggleButton
         type="button"
         activated={!toggleState}
         onClick={() => setToggleState(false)}
       >
         <EyeIcon />
-      </ToggleButton>
-      <ToggleButton
+      </Styled.ToggleButton>
+      <Styled.ToggleButton
         type="button"
         activated={toggleState}
         onClick={() => setToggleState(true)}
       >
         <CodeBracketIcon />
-      </ToggleButton>
-    </ToggleContainer>
+      </Styled.ToggleButton>
+    </Styled.ToggleContainer>
   );
 }
 

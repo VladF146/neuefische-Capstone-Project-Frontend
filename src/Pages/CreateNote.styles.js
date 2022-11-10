@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const CreateNoteContainer = styled.div`
+const Styled = {};
+
+Styled.Container = styled.div`
   flex-grow: 1;
   padding: 0 1rem;
   display: flex;
@@ -8,7 +10,7 @@ export const CreateNoteContainer = styled.div`
   overflow-y: scroll;
 `;
 
-export const StyledForm = styled.form`
+Styled.Form = styled.form`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -16,18 +18,18 @@ export const StyledForm = styled.form`
   width: 100%;
 `;
 
-export const StyledLabel = styled.label`
+Styled.Label = styled.label`
   font-size: 1rem;
 `;
 
-export const StyledInput = styled.input`
+Styled.Input = styled.input`
   border-radius: 10px;
   padding: 0.7rem;
   font-weight: bolder;
   font-size: 1rem;
 `;
 
-export const StyledTextarea = styled.textarea`
+Styled.Textarea = styled.textarea`
   border-radius: 10px;
   padding: 0.7rem;
   font-weight: bolder;
@@ -35,7 +37,7 @@ export const StyledTextarea = styled.textarea`
   height: 50%;
 `;
 
-export const ReactMarkdownContainer = styled.div`
+Styled.ReactMarkdownContainer = styled.div`
   border-radius: 10px;
   padding: 0.7rem;
   height: 50%;
@@ -59,7 +61,7 @@ export const ReactMarkdownContainer = styled.div`
   }
 `;
 
-export const StyledButton = styled.button`
+Styled.Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,8 +77,10 @@ export const StyledButton = styled.button`
   }
 `;
 
-export const ContentHeader = styled.div`
+Styled.ContentHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
+
+export default Styled;
