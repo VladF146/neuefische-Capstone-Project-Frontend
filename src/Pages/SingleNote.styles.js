@@ -34,12 +34,13 @@ Styled.Label = styled.label`
 Styled.Input = styled.input`
 margin-top: 0.25rem;
   border-radius: 10px;
-  padding: 0.7rem;
+  padding: 1rem;
   font-weight: bolder;
   font-family: monospace;
   font-size: 1rem;
   box-shadow: inset 0px 0px 10px 0 rgba(0, 0, 0, 0.1);
   border: none;
+  background-color: #f8fafc;
 `;
 
 Styled.Textarea = styled.textarea`
@@ -53,6 +54,7 @@ Styled.Textarea = styled.textarea`
   box-shadow: inset 0px 0px 15px 0 rgba(0, 0, 0, 0.1);
   border: none;
   resize: none;
+  background-color: #f8fafc;
 
   &::-webkit-scrollbar {
   width: 5px;
