@@ -21,6 +21,7 @@
     "react/jsx-filename-extension": "off",
     "react/prop-types": "off",
     "max-len": "off",
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": "off",
+    "linebreak-style": "off"
   }
 }
