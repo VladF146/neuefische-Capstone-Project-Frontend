@@ -78,6 +78,7 @@ Styled.ReactMarkdownContainer = styled.div`
   height: 50%;
   width: 100%;
   overflow-y: scroll;
+  word-wrap: break-word;
 
   img {
     width: 80%;
@@ -147,6 +148,9 @@ display: block;
 flex-grow: 1;
 font-size: 2rem;
 font-weight: bolder;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
 `;
 
 export default Styled;
