@@ -1,16 +1,16 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import { QueryClientProvider, QueryClient } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
-import AuthenticationContextProvider from "./Contexts/AuthenticationContext";
-import NotesContextProvider from "./Contexts/NotesContext";
-import GlobalStyles from "./Components/GlobalStyles";
-import App from "./App";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import { QueryClientProvider, QueryClient } from 'react-query';
+// import { ReactQueryDevtools } from 'react-query/devtools';
+import AuthenticationContextProvider from './Contexts/AuthenticationContext';
+import NotesContextProvider from './Contexts/NotesContext';
+import GlobalStyles from './Components/GlobalStyles';
+import App from './App';
 
 const queryClient = new QueryClient();
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AuthenticationContextProvider>
@@ -24,5 +24,5 @@ root.render(
         </BrowserRouter>
       </NotesContextProvider>
     </AuthenticationContextProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

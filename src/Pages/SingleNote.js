@@ -1,20 +1,20 @@
-import { useState, useContext } from "react";
-import { useQuery } from "react-query";
-import { useParams, useNavigate } from "react-router-dom";
-import Toggle from "../Components/Toggle";
-import ReactMarkdownForMath from "../Components/ReactMarkdownForMath";
-import { AuthenticationContext } from "../Contexts/AuthenticationContext";
-import { NotesContext, notesActionTypes } from "../Contexts/NotesContext";
-import Styled from "./SingleNote.styles";
+import { useState, useContext } from 'react';
+import { useQuery } from 'react-query';
+import { useParams, useNavigate } from 'react-router-dom';
+import Toggle from '../Components/Toggle';
+import ReactMarkdownForMath from '../Components/ReactMarkdownForMath';
+import { AuthenticationContext } from '../Contexts/AuthenticationContext';
+import { NotesContext, notesActionTypes } from '../Contexts/NotesContext';
+import Styled from './SingleNote.styles';
 import {
   getSingleNote,
   updateSingleNote,
   deleteSingleNote,
-} from "../Services/fetchNotes";
+} from '../Services/fetchNotes';
 
 function SingleNote() {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
   const [isMarkdown, setIsMarkdown] = useState(false);
   const { user } = useContext(AuthenticationContext);
   const { dispatch } = useContext(NotesContext);
@@ -22,14 +22,14 @@ function SingleNote() {
   const navigate = useNavigate();
 
   const { isLoading, isError, error } = useQuery(
-    ["get-single-note", noteId],
+    ['get-single-note', noteId],
     () => getSingleNote(user, noteId),
     {
       onSuccess: (data) => {
         setTitle(data.data.title);
         setContent(data.data.content);
       },
-    }
+    },
   );
 
   const {
@@ -38,7 +38,7 @@ function SingleNote() {
     error: errorUpdate,
     refetch: refetchUpdate,
   } = useQuery(
-    ["update-single-note", noteId],
+    ['update-single-note', noteId],
     () => updateSingleNote(user, noteId, title, content),
     {
       enabled: false,
@@ -49,7 +49,7 @@ function SingleNote() {
           payload: data.data,
         });
       },
-    }
+    },
   );
 
   const {
@@ -58,7 +58,7 @@ function SingleNote() {
     error: errorDelete,
     refetch: refetchDelete,
   } = useQuery(
-    ["delete-single-note", noteId],
+    ['delete-single-note', noteId],
     () => deleteSingleNote(user, noteId),
     {
       enabled: false,
@@ -68,9 +68,9 @@ function SingleNote() {
           type: notesActionTypes.DELETE_SINGLE_NOTE,
           payload: data.data,
         });
-        navigate("/", { replace: true });
+        navigate('/', { replace: true });
       },
-    }
+    },
   );
 
   const handleUpdate = async () => {
@@ -101,13 +101,13 @@ function SingleNote() {
           <ReactMarkdownForMath>{content}</ReactMarkdownForMath>
         </Styled.ReactMarkdownContainer>
       )}
-      {isError ||
-        isErrorUpdate ||
-        (isErrorDelete && (
+      {isError
+        || isErrorUpdate
+        || (isErrorDelete && (
           <Styled.ErrorWrapper>
-            {error.response.data.error ||
-              errorUpdate.response.data.error ||
-              errorDelete.response.data.error}
+            {error.response.data.error
+              || errorUpdate.response.data.error
+              || errorDelete.response.data.error}
           </Styled.ErrorWrapper>
         ))}
       <Styled.ButtonContainer>

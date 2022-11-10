@@ -1,15 +1,15 @@
-import { useContext } from "react";
+import { useContext } from 'react';
 import {
   AuthenticationContext,
   authActionTypes,
-} from "../Contexts/AuthenticationContext";
-import Styled from "./Settings.styles";
+} from '../Contexts/AuthenticationContext';
+import Styled from './Settings.styles';
 
 function Settings() {
   const { user, dispatch } = useContext(AuthenticationContext);
 
   const handleSignout = () => {
-    localStorage.removeItem("user");
+    localStorage.removeItem('user');
     dispatch({ type: authActionTypes.SIGNOUT });
   };
 
