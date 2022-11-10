@@ -9,7 +9,6 @@ Styled.ToggleContainer = styled.div`
   background-color: #f8fafc;
   align-self: end;
   box-shadow: inset 0px 0px 10px 0 rgba(0, 0, 0, 0.1);
-
 `;
 Styled.ToggleButton = styled.button`
   display: flex;
@@ -24,9 +23,7 @@ Styled.ToggleButton = styled.button`
     ? '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)'
     : '')};
   border: unset;
-  color: ${({ activated }) => (activated
-    ? 'black'
-    : '#9ca3af')};
+  color: ${({ activated }) => (activated ? 'black' : '#9ca3af')};
   cursor: pointer;
 
   svg {

@@ -12,14 +12,6 @@ Styled.Container = styled.div`
   gap: 1rem;
 `;
 
-Styled.Title = styled.h1`
-  text-align: center;
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
-
 Styled.ContentHeader = styled.div`
   display: flex;
   justify-content: space-between;
@@ -32,7 +24,7 @@ Styled.Label = styled.label`
 `;
 
 Styled.Input = styled.input`
-margin-top: 0.25rem;
+  margin-top: 0.25rem;
   border-radius: 10px;
   padding: 1rem;
   font-weight: bolder;
@@ -41,6 +33,7 @@ margin-top: 0.25rem;
   box-shadow: inset 0px 0px 10px 0 rgba(0, 0, 0, 0.1);
   border: none;
   background-color: #f8fafc;
+  width: 100%;
 `;
 
 Styled.Textarea = styled.textarea`
@@ -57,21 +50,21 @@ Styled.Textarea = styled.textarea`
   background-color: #f8fafc;
 
   &::-webkit-scrollbar {
-  width: 5px;
-}
+    width: 5px;
+  }
 
-&::-webkit-scrollbar-track {
-  border-radius: 10px;
-}
- 
-&::-webkit-scrollbar-thumb {
-  background: #6ee7b7; 
-  border-radius: 10px;
-}
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
 
-&::-webkit-scrollbar-thumb:hover {
-  background: #34d399; 
-}
+  &::-webkit-scrollbar-thumb {
+    background: #6ee7b7;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #34d399;
+  }
 `;
 
 Styled.ReactMarkdownContainer = styled.div`
@@ -98,21 +91,21 @@ Styled.ReactMarkdownContainer = styled.div`
   }
 
   &::-webkit-scrollbar {
-  width: 5px;
-}
+    width: 5px;
+  }
 
-&::-webkit-scrollbar-track { 
-  border-radius: 10px;
-}
- 
-&::-webkit-scrollbar-thumb {
-  background: #6ee7b7; 
-  border-radius: 10px;
-}
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
 
-&::-webkit-scrollbar-thumb:hover {
-  background: #34d399; 
-}
+  &::-webkit-scrollbar-thumb {
+    background: #6ee7b7;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #34d399;
+  }
 `;
 
 Styled.ButtonContainer = styled.div`
@@ -138,6 +131,14 @@ Styled.Button = styled.button`
   }
 `;
 
+Styled.ContentHeader = styled.div`
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+`;
+
 Styled.ErrorWrapper = styled.div`
   border-radius: 10px;
   background-color: #fecaca;
@@ -145,31 +146,14 @@ Styled.ErrorWrapper = styled.div`
   text-align: center;
 `;
 
-Styled.BackButton = styled.button`
-  background-color: transparent;
-  border: unset;
-
-  svg {
-    width: 20px;
-    font-weight: bolder;
-    margin-bottom: 0.2rem;
-    cursor: pointer;
-    color: black;
-
-    &:hover {
-      color: white;
-    }
-  }
-`;
-
 Styled.Title = styled.span`
-display: block;
-flex-grow: 1;
-font-size: 2rem;
-font-weight: bolder;
-overflow: hidden;
-text-overflow: ellipsis;
-white-space: nowrap;
+  display: block;
+  flex-grow: 1;
+  font-size: 2rem;
+  font-weight: bolder;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export default Styled;

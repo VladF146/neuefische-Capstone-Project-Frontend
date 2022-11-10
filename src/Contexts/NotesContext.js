@@ -39,7 +39,10 @@ function NotesContextProvider({ children }) {
     notes: [],
   });
 
-  const memoizedValue = useMemo(() => ({ ...state, dispatch }), [state, dispatch]);
+  const memoizedValue = useMemo(
+    () => ({ ...state, dispatch }),
+    [state, dispatch],
+  );
 
   return (
     <NotesContext.Provider value={memoizedValue}>

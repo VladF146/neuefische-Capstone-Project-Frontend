@@ -30,7 +30,7 @@ Styled.Label = styled.label`
 `;
 
 Styled.Input = styled.input`
-margin-top: 0.25rem;
+  margin-top: 0.25rem;
   border-radius: 10px;
   padding: 1rem;
   font-weight: bolder;
@@ -55,21 +55,21 @@ Styled.Textarea = styled.textarea`
   background-color: #f8fafc;
 
   &::-webkit-scrollbar {
-  width: 5px;
-}
+    width: 5px;
+  }
 
-&::-webkit-scrollbar-track {
-  border-radius: 10px;
-}
- 
-&::-webkit-scrollbar-thumb {
-  background: #6ee7b7; 
-  border-radius: 10px;
-}
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
 
-&::-webkit-scrollbar-thumb:hover {
-  background: #34d399; 
-}
+  &::-webkit-scrollbar-thumb {
+    background: #6ee7b7;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #34d399;
+  }
 `;
 
 Styled.ReactMarkdownContainer = styled.div`
@@ -96,21 +96,21 @@ Styled.ReactMarkdownContainer = styled.div`
   }
 
   &::-webkit-scrollbar {
-  width: 5px;
-}
+    width: 5px;
+  }
 
-&::-webkit-scrollbar-track {
-  border-radius: 10px;
-}
- 
-&::-webkit-scrollbar-thumb {
-  background: #6ee7b7; 
-  border-radius: 10px;
-}
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
 
-&::-webkit-scrollbar-thumb:hover {
-  background: #34d399; 
-}
+  &::-webkit-scrollbar-thumb {
+    background: #6ee7b7;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #34d399;
+  }
 `;
 
 Styled.Button = styled.button`
@@ -144,13 +144,13 @@ Styled.ErrorWrapper = styled.div`
 `;
 
 Styled.Title = styled.span`
-display: block;
-flex-grow: 1;
-font-size: 2rem;
-font-weight: bolder;
-overflow: hidden;
-text-overflow: ellipsis;
-white-space: nowrap;
+  display: block;
+  flex-grow: 1;
+  font-size: 2rem;
+  font-weight: bolder;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export default Styled;

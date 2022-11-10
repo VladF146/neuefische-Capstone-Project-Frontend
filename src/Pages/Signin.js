@@ -60,7 +60,12 @@ function Signin() {
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
-            <Styled.ToggleButton type="button" onClick={() => setIsPasswordVisible(!isPasswordVisible)}>{isPasswordVisible ? <EyeSlashIcon /> : <EyeIcon /> }</Styled.ToggleButton>
+            <Styled.ToggleButton
+              type="button"
+              onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+            >
+              {isPasswordVisible ? <EyeSlashIcon /> : <EyeIcon />}
+            </Styled.ToggleButton>
           </Styled.PasswordWrapper>
         </div>
 
