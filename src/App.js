@@ -1,12 +1,12 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import ProtectedRoute from "./Components/ProtectedRoute";
-import Home from "./Pages/Home";
-import SingleNote from "./Pages/SingleNote";
-import Signup from "./Pages/Signup";
-import Signin from "./Pages/Signin";
-import Layout from "./Components/Layout";
-import CreateNote from "./Pages/CreateNote";
-import Settings from "./Pages/Settings";
+import { Routes, Route, Navigate } from 'react-router-dom';
+import ProtectedRoute from './Components/ProtectedRoute';
+import Home from './Pages/Home';
+import SingleNote from './Pages/SingleNote';
+import Signup from './Pages/Signup';
+import Signin from './Pages/Signin';
+import Layout from './Components/Layout';
+import CreateNote from './Pages/CreateNote';
+import Settings from './Pages/Settings';
 
 function App() {
   return (

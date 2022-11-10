@@ -1,31 +1,33 @@
-import { useState, useContext } from "react";
-import { useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
+import { useState, useContext } from 'react';
+import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import {
   AuthenticationContext,
   authActionTypes,
-} from "../Contexts/AuthenticationContext";
-import { postSignup } from "../Services/fetchAuth";
-import Styled from "./Auth.styles";
+} from '../Contexts/AuthenticationContext';
+import { postSignup } from '../Services/fetchAuth';
+import Styled from './Auth.styles';
 
 function Signup() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const { dispatch } = useContext(AuthenticationContext);
   const navigate = useNavigate();
 
-  const { isLoading, isError, error, refetch } = useQuery(
-    "signup",
+  const {
+    isLoading, isError, error, refetch,
+  } = useQuery(
+    'signup',
     () => postSignup(email, password),
     {
       enabled: false,
       retry: 1,
       onSuccess: (data) => {
-        localStorage.setItem("user", JSON.stringify(data.data));
+        localStorage.setItem('user', JSON.stringify(data.data));
         dispatch({ type: authActionTypes.SIGNIN, payload: data.data });
-        navigate("/", { replace: true });
+        navigate('/', { replace: true });
       },
-    }
+    },
   );
 
   const handleSignup = async (event) => {

@@ -1,5 +1,5 @@
-import { EyeIcon, CodeBracketIcon } from "@heroicons/react/24/outline";
-import Styled from "./Toggle.styles";
+import { EyeIcon, CodeBracketIcon } from '@heroicons/react/24/outline';
+import Styled from './Toggle.styles';
 
 function Toggle({ toggleState, setToggleState }) {
   return (

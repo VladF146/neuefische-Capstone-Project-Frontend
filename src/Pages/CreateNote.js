@@ -1,26 +1,28 @@
-import { useState, useContext } from "react";
-import { useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
-import Toggle from "../Components/Toggle";
-import ReactMarkdownForMath from "../Components/ReactMarkdownForMath";
-import { NotesContext, notesActionTypes } from "../Contexts/NotesContext";
-import { AuthenticationContext } from "../Contexts/AuthenticationContext";
-import Styled from "./CreateNote.styles";
+import { useState, useContext } from 'react';
+import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
+import Toggle from '../Components/Toggle';
+import ReactMarkdownForMath from '../Components/ReactMarkdownForMath';
+import { NotesContext, notesActionTypes } from '../Contexts/NotesContext';
+import { AuthenticationContext } from '../Contexts/AuthenticationContext';
+import Styled from './CreateNote.styles';
 
-import "katex/dist/katex.min.css";
-import { createSingleNote } from "../Services/fetchNotes";
+import 'katex/dist/katex.min.css';
+import { createSingleNote } from '../Services/fetchNotes';
 
 function CreateNote() {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
   const [isMarkdown, setIsMarkdown] = useState(true);
   const { dispatch } = useContext(NotesContext);
   const { user } = useContext(AuthenticationContext);
 
   const navigate = useNavigate();
 
-  const { isLoading, isError, error, refetch } = useQuery(
-    "create-single-note",
+  const {
+    isLoading, isError, error, refetch,
+  } = useQuery(
+    'create-single-note',
     () => createSingleNote(user, title, content),
     {
       enabled: false,
@@ -32,7 +34,7 @@ function CreateNote() {
         });
         navigate(`/notes/${data.data._id}`);
       },
-    }
+    },
   );
 
   const handleCreateNote = async (event) => {

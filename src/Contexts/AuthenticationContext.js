@@ -1,10 +1,12 @@
-import { createContext, useReducer, useEffect } from "react";
+import {
+  createContext, useReducer, useEffect, useMemo,
+} from 'react';
 
 export const AuthenticationContext = createContext();
 
 export const authActionTypes = {
-  SIGNIN: "SIGNIN",
-  SIGNOUT: "SIGNOUT",
+  SIGNIN: 'SIGNIN',
+  SIGNOUT: 'SIGNOUT',
 };
 
 const authenticationReducer = (state, action) => {
@@ -22,14 +24,16 @@ function AuthenticationContextProvider({ children }) {
   const [state, dispatch] = useReducer(authenticationReducer, { user: null });
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
       dispatch({ type: authActionTypes.SIGNIN, payload: user });
     }
   }, [dispatch]);
 
+  const memoizedValue = useMemo(() => ({ ...state, dispatch }), []);
+
   return (
-    <AuthenticationContext.Provider value={{ ...state, dispatch }}>
+    <AuthenticationContext.Provider value={memoizedValue}>
       {children}
     </AuthenticationContext.Provider>
   );
