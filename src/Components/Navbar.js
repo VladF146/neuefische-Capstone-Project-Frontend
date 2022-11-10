@@ -1,77 +1,35 @@
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
 import {
   Square3Stack3DIcon,
   PlusCircleIcon,
   AdjustmentsHorizontalIcon,
 } from "@heroicons/react/24/outline";
+import Styled from "./Navbar.styles";
 
 function Navbar() {
   return (
-    <StyledNavbar>
+    <Styled.Navbar>
       <ul>
         <li>
-          <StyleNavLink to="/notes" end>
+          <Styled.NavLink to="/notes" end>
             <Square3Stack3DIcon />
             Notes
-          </StyleNavLink>
+          </Styled.NavLink>
         </li>
         <li>
-          <StyleNavLink to="/create">
+          <Styled.NavLink to="/create">
             <PlusCircleIcon />
             Create
-          </StyleNavLink>
+          </Styled.NavLink>
         </li>
         <li>
-          <StyleNavLink to="/settings">
+          <Styled.NavLink to="/settings">
             <AdjustmentsHorizontalIcon />
             Settings
-          </StyleNavLink>
+          </Styled.NavLink>
         </li>
       </ul>
-    </StyledNavbar>
+    </Styled.Navbar>
   );
 }
-
-const StyledNavbar = styled.nav`
-  background-color: #6ee7b7;
-
-  ul {
-    display: flex;
-  }
-
-  li {
-    list-style: none;
-    flex-grow: 1;
-  }
-
-  svg {
-    width: 25px;
-    font-weight: bolder;
-    margin-bottom: 0.2rem;
-  }
-`;
-
-const StyleNavLink = styled(NavLink)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-  width: 100%;
-  padding: 1rem;
-  text-align: center;
-  color: black;
-  font-size: 0.8rem;
-
-  &:hover {
-    color: white;
-    background-color: #34d399;
-  }
-
-  &.active {
-    color: white;
-    background-color: #34d399;
-  }
-`;
 
 export default Navbar;
