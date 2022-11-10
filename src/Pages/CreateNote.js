@@ -20,7 +20,7 @@ function CreateNote() {
   const navigate = useNavigate();
 
   const { isLoading, isError, error, refetch } = useQuery(
-    "post-single-note",
+    "create-single-note",
     () => createSingleNote(user, title, content),
     {
       enabled: false,

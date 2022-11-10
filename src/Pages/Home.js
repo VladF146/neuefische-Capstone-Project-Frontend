@@ -11,7 +11,7 @@ function Home() {
   const { user } = useContext(AuthenticationContext);
 
   const { isLoading, isError, error } = useQuery(
-    "signin",
+    "get-all-notes",
     () => getAllNotes(user),
     {
       onSuccess: (data) => {
