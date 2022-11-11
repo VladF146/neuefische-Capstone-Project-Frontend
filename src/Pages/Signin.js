@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { useQuery } from 'react-query';
-import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid';
 import { useNavigate } from 'react-router-dom';
+import PasswordInput from '../Components/PasswordInput';
 import {
   AuthenticationContext,
   authActionTypes,
@@ -13,7 +13,6 @@ function Signin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { dispatch } = useContext(AuthenticationContext);
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const navigate = useNavigate();
 
@@ -53,20 +52,10 @@ function Signin() {
         </div>
         <div>
           <Styled.Label htmlFor="password">Password:</Styled.Label>
-          <Styled.PasswordWrapper>
-            <Styled.Input
-              id="password"
-              type={isPasswordVisible ? 'text' : 'password'}
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            />
-            <Styled.ToggleButton
-              type="button"
-              onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-            >
-              {isPasswordVisible ? <EyeSlashIcon /> : <EyeIcon />}
-            </Styled.ToggleButton>
-          </Styled.PasswordWrapper>
+          <PasswordInput
+            passworw={password}
+            setPassword={setPassword}
+          />
         </div>
 
         <Styled.Button disabled={isLoading} type="submit">
