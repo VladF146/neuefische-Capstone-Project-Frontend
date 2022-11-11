@@ -47,14 +47,12 @@ function Signin() {
             id="email"
             type="email"
             value={email}
+            placeholder="e.g., anna.conda@gmail.com"
             onChange={(event) => setEmail(event.target.value)}
           />
         </div>
         <div>
-          <PasswordInput
-            passworw={password}
-            setPassword={setPassword}
-          />
+          <PasswordInput passworw={password} setPassword={setPassword} />
         </div>
 
         <Styled.Button disabled={isLoading} type="submit">
