@@ -11,6 +11,8 @@ describe('Toggle', () => {
     );
     const previewButton = screen.getByRole('button', { name: 'Preview' });
     const markdownButton = screen.getByRole('button', { name: 'Markdown' });
+    expect(previewButton).toHaveStyle('background-color: #ffffff');
+    expect(markdownButton).toHaveStyle('background-color: transparent');
     expect(previewButton).toBeInTheDocument();
     expect(markdownButton).toBeInTheDocument();
   });
