@@ -5,6 +5,7 @@ function Toggle({ toggleState, setToggleState }) {
   return (
     <Styled.ToggleContainer>
       <Styled.ToggleButton
+        title="Preview"
         type="button"
         activated={!toggleState}
         onClick={() => setToggleState(false)}
@@ -12,6 +13,7 @@ function Toggle({ toggleState, setToggleState }) {
         <EyeIcon />
       </Styled.ToggleButton>
       <Styled.ToggleButton
+        title="Markdown"
         type="button"
         activated={toggleState}
         onClick={() => setToggleState(true)}

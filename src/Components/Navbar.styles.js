@@ -12,6 +12,7 @@ Styled.Navbar = styled.nav`
 
   li {
     list-style: none;
+    width: 33.333333333%;
     flex-grow: 1;
   }
 
@@ -28,7 +29,7 @@ Styled.NavLink = styled(NavLink)`
   align-items: center;
   text-decoration: none;
   width: 100%;
-  padding: 1rem;
+  padding: 1rem 0;
   text-align: center;
   color: black;
   font-size: 0.8rem;

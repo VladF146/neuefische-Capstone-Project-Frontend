@@ -6,6 +6,7 @@ import ReactMarkdownForMath from '../Components/ReactMarkdownForMath';
 import { AuthenticationContext } from '../Contexts/AuthenticationContext';
 import { NotesContext, notesActionTypes } from '../Contexts/NotesContext';
 import Styled from './SingleNote.styles';
+
 import {
   getSingleNote,
   updateSingleNote,
@@ -83,9 +84,16 @@ function SingleNote() {
 
   return (
     <Styled.Container>
-      <Styled.Title>{title}</Styled.Title>
       <Styled.ContentHeader>
-        <Styled.Label>Content:</Styled.Label>
+        {isMarkdown && (
+          <Styled.Input
+            type="text"
+            onChange={(e) => setTitle(e.target.value)}
+            value={title}
+            placeholder="Note title..."
+          />
+        )}
+        {!isMarkdown && <Styled.Title>{title}</Styled.Title>}
         <Toggle toggleState={isMarkdown} setToggleState={setIsMarkdown} />
       </Styled.ContentHeader>
 
