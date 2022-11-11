@@ -17,6 +17,10 @@ Styled.PasswordWrapper = styled.div`
   }
 `;
 
+Styled.Label = styled.label`
+  font-size: 1rem;
+`;
+
 Styled.Input = styled.input`
   border-radius: 10px;
   padding: 1rem;

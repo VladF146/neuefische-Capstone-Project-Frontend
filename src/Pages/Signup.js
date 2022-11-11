@@ -51,7 +51,6 @@ function Signup() {
           />
         </div>
         <div>
-          <Styled.Label htmlFor="password">Password:</Styled.Label>
           <PasswordInput
             passworw={password}
             setPassword={setPassword}

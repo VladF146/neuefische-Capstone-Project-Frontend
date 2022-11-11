@@ -9,6 +9,7 @@ function PasswordInput({
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   return (
     <Styled.PasswordWrapper>
+      <Styled.Label htmlFor="password">Password:</Styled.Label>
       <Styled.Input
         id="password"
         type={isPasswordVisible ? 'text' : 'password'}
