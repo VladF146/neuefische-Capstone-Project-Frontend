@@ -30,7 +30,6 @@ Styled.Label = styled.label`
 `;
 
 Styled.Input = styled.input`
-  margin-top: 0.25rem;
   border-radius: 10px;
   padding: 1rem;
   font-weight: bolder;
