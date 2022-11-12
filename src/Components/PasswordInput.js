@@ -11,6 +11,7 @@ function PasswordInput({ password, setPassword }) {
         <Styled.Input
           id="password"
           type={isPasswordVisible ? 'text' : 'password'}
+          data-testid={isPasswordVisible ? 'text' : 'password'}
           value={password}
           placeholder="e.g., ••••••••"
           onChange={(event) => setPassword(event.target.value)}
@@ -20,9 +21,9 @@ function PasswordInput({ password, setPassword }) {
           onClick={() => setIsPasswordVisible(!isPasswordVisible)}
         >
           {isPasswordVisible ? (
-            <EyeSlashIcon title="Hide password" />
+            <EyeSlashIcon title="Hide password" data-testid="hide" />
           ) : (
-            <EyeIcon title="Show password" />
+            <EyeIcon title="Show password" data-testid="show" />
           )}
         </Styled.ToggleButton>
       </Styled.PasswordWrapper>
