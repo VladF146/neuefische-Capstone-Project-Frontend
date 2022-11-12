@@ -12,7 +12,7 @@ function ProtectedRoute({ component, unprotected }) {
     return component;
   }
   if (!user) {
-    return <Navigate to="/signin" />;
+    return <Navigate to="/auth" />;
   }
   return component;
 }

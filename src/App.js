@@ -2,8 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import ProtectedRoute from './Components/ProtectedRoute';
 import Home from './Pages/Home';
 import SingleNote from './Pages/SingleNote';
-import Signup from './Pages/Signup';
-import Signin from './Pages/Signin';
+import Authentication from './Pages/Authentication';
 import Layout from './Components/Layout';
 import CreateNote from './Pages/CreateNote';
 import Settings from './Pages/Settings';
@@ -36,12 +35,8 @@ function App() {
         </Route>
 
         <Route
-          path="/signup"
-          element={<ProtectedRoute component={<Signup />} unprotected />}
-        />
-        <Route
-          path="/signin"
-          element={<ProtectedRoute component={<Signin />} unprotected />}
+          path="/auth"
+          element={<ProtectedRoute component={<Authentication />} unprotected />}
         />
         <Route path="*" element="No page found" />
       </Routes>
