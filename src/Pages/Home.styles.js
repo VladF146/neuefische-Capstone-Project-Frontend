@@ -9,7 +9,10 @@ Styled.Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow-y: scroll;
+  overflow-y: auto;
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto;
 `;
 
 Styled.List = styled.ul`

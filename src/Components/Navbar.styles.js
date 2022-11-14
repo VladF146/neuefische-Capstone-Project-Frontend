@@ -8,6 +8,8 @@ Styled.Navbar = styled.nav`
 
   ul {
     display: flex;
+    max-width: 768px;
+    margin: 0 auto;
   }
 
   li {

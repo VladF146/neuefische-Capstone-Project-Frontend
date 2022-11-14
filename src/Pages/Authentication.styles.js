@@ -10,6 +10,8 @@ Styled.Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-width: 768px;
+  margin: 0 auto;
 
   h1 {
     margin-bottom: 2rem;
@@ -21,6 +23,7 @@ Styled.Form = styled.form`
   flex-direction: column;
   gap: 2rem;
   width: 100%;
+  max-width: 480px;
 
   label,
   input,
@@ -37,6 +40,7 @@ Styled.Input = styled.input`
   border-radius: 10px;
   padding: 1rem;
   font-weight: bolder;
+  font-family: monospace;
   font-size: 1rem;
   border: none;
   box-shadow: inset 0px 0px 7px 0 rgba(0, 0, 0, 0.1);
@@ -52,6 +56,7 @@ Styled.Button = styled.button`
   padding: 1rem;
   border: unset;
   font-weight: bolder;
+  font-family: monospace;
   font-size: 1rem;
   cursor: pointer;
   &:hover {
@@ -71,6 +76,7 @@ Styled.ChangeAuthButton = styled.button`
   border: unset;
   background-color: transparent;
   font-weight: bolder;
+  font-family: monospace;
   font-size: 1rem;
   color: black;
   cursor: pointer;
