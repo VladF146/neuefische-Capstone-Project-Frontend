@@ -2,7 +2,7 @@ import {
   createContext, useReducer, useEffect, useMemo,
 } from 'react';
 
-export const AuthenticationContext = createContext();
+export const AuthenticationContext = createContext('');
 
 export const authActionTypes = {
   SIGNIN: 'SIGNIN',
