@@ -6,6 +6,7 @@ import Authentication from './Pages/Authentication';
 import Layout from './Components/Layout';
 import CreateNote from './Pages/CreateNote';
 import Settings from './Pages/Settings';
+import PageNotFound from './Pages/PageNotFound';
 
 function App() {
   return (
@@ -18,11 +19,10 @@ function App() {
             <Route path="notes/:noteId" element={<SingleNote />} />
             <Route path="create" element={<CreateNote />} />
             <Route path="settings" element={<Settings />} />
+            <Route path="auth" element={<Authentication />} />
+            <Route path="*" element={<PageNotFound />} />
           </Route>
         </Route>
-
-        <Route path="/auth" element={<Authentication />} />
-        <Route path="*" element="No page found" />
       </Routes>
     </div>
   );

@@ -1,4 +1,4 @@
-import { useState, useContext, useLayoutEffect } from 'react';
+import { useState, useContext } from 'react';
 import { useQuery } from 'react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
 import PasswordInput from '../Components/PasswordInput';
@@ -14,14 +14,10 @@ function Authentication() {
   const [password, setPassword] = useState('');
 
   const [authPageChoice, setAuthPageChoice] = useState('signin');
-  const { user, dispatch } = useContext(AuthenticationContext);
+  const { dispatch } = useContext(AuthenticationContext);
 
   const location = useLocation();
   const navigate = useNavigate();
-
-  useLayoutEffect(() => {
-    if (user) navigate(location?.state?.from || '/notes', { replace: true });
-  }, [user]);
 
   const {
     isLoading, isError, error, refetch,
