@@ -1,20 +1,19 @@
-import { Navigate } from 'react-router-dom';
+import { useLocation, Navigate, Outlet } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthenticationContext } from '../Contexts/AuthenticationContext';
 
-function ProtectedRoute({ component, unprotected }) {
+function ProtectedRoute() {
   const { user } = useContext(AuthenticationContext);
 
-  if (unprotected) {
-    if (user) {
-      return <Navigate to="/notes" />;
-    }
-    return component;
-  }
-  if (!user) {
-    return <Navigate to="/auth" />;
-  }
-  return component;
+  const location = useLocation();
+
+  if (user === undefined) return null;
+
+  return user ? (
+    <Outlet />
+  ) : (
+    <Navigate to="/auth" state={{ from: location.pathname }} />
+  );
 }
 
 export default ProtectedRoute;

@@ -176,7 +176,9 @@ describe('Signin', () => {
     errorWrapper = await screen.findByTestId('error-wrapper', {
       timeout: 10000,
     });
-    expect(errorWrapper).toHaveTextContent('Password should be at least 8 characters long and contain at least one of each: Lower case letter, upper case letter, symbol.');
+    expect(errorWrapper).toHaveTextContent(
+      'Password should be at least 8 characters long and contain at least one of each: Lower case letter, upper case letter, symbol.',
+    );
 
     // Already used email
     await user.type(hiddenPasswordInput, 'ABCabc123!');

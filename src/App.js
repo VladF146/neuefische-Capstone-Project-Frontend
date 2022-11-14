@@ -11,33 +11,17 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route
-            index
-            element={<ProtectedRoute component={<Navigate to="/notes" />} />}
-          />
-          <Route
-            path="notes"
-            element={<ProtectedRoute component={<Home />} />}
-          />
-          <Route
-            path="notes/:noteId"
-            element={<ProtectedRoute component={<SingleNote />} />}
-          />
-          <Route
-            path="create"
-            element={<ProtectedRoute component={<CreateNote />} />}
-          />
-          <Route
-            path="settings"
-            element={<ProtectedRoute component={<Settings />} />}
-          />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Navigate to="/notes" />} />
+            <Route path="notes" element={<Home />} />
+            <Route path="notes/:noteId" element={<SingleNote />} />
+            <Route path="create" element={<CreateNote />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
         </Route>
 
-        <Route
-          path="/auth"
-          element={<ProtectedRoute component={<Authentication />} unprotected />}
-        />
+        <Route path="/auth" element={<Authentication />} />
         <Route path="*" element="No page found" />
       </Routes>
     </div>
