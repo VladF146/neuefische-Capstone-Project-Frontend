@@ -3,10 +3,10 @@ import { useContext } from 'react';
 import { useQuery } from 'react-query';
 import { NotesContext, notesActionTypes } from '../Contexts/NotesContext';
 import { AuthenticationContext } from '../Contexts/AuthenticationContext';
-import Styled from './Home.styles';
+import Styled from './Notes.styles';
 import { getAllNotes } from '../Services/fetchNotes';
 
-function Home() {
+function Notes() {
   const { notes, dispatch } = useContext(NotesContext);
   const { user } = useContext(AuthenticationContext);
 
@@ -32,13 +32,13 @@ function Home() {
               </Styled.LinkWrapper>
             </li>
           ))}
+        {isLoading && 'Loading ...'}
+        {isError && (
+          <Styled.ErrorWrapper>{error.response.data.error}</Styled.ErrorWrapper>
+        )}
       </Styled.List>
-      {isLoading && 'Loading ...'}
-      {isError && (
-        <Styled.ErrorWrapper>{error.response.data.error}</Styled.ErrorWrapper>
-      )}
     </Styled.Container>
   );
 }
 
-export default Home;
+export default Notes;
