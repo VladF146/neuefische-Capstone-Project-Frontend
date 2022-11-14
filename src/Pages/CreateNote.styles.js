@@ -7,7 +7,10 @@ Styled.Container = styled.div`
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
+  overflow-y: auto;
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto;
 `;
 
 Styled.Form = styled.form`
@@ -121,6 +124,7 @@ Styled.Button = styled.button`
   padding: 1rem;
   border: unset;
   font-weight: bolder;
+  font-family: monospace;
   font-size: 1rem;
   cursor: pointer;
   &:hover {

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const Styled = {};
 
 Styled.Container = styled.div`
+height: 100%;
   flex-grow: 1;
   padding: 0 1rem;
   display: flex;
@@ -25,7 +26,8 @@ Styled.Button = styled.button`
   align-items: center;
   background-color: #6ee7b7;
   border-radius: 10px;
-  padding: 1rem 2rem;  border: unset;
+  padding: 1rem 2rem;
+  border: unset;
   font-weight: bolder;
   font-family: monospace;
   font-size: 1rem;

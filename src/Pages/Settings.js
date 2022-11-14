@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   AuthenticationContext,
   authActionTypes,
@@ -8,9 +9,12 @@ import Styled from './Settings.styles';
 function Settings() {
   const { user, dispatch } = useContext(AuthenticationContext);
 
+  const navigate = useNavigate();
+
   const handleSignout = () => {
     localStorage.removeItem('user');
     dispatch({ type: authActionTypes.SIGNOUT });
+    navigate('/auth');
   };
 
   return (

@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { useQuery } from 'react-query';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import PasswordInput from '../Components/PasswordInput';
 import {
   AuthenticationContext,
@@ -16,6 +16,7 @@ function Authentication() {
   const [authPageChoice, setAuthPageChoice] = useState('signin');
   const { dispatch } = useContext(AuthenticationContext);
 
+  const location = useLocation();
   const navigate = useNavigate();
 
   const {
@@ -29,7 +30,7 @@ function Authentication() {
       onSuccess: (data) => {
         localStorage.setItem('user', JSON.stringify(data.data));
         dispatch({ type: authActionTypes.SIGNIN, payload: data.data });
-        navigate('/', { replace: true });
+        navigate(location?.state?.from || '/notes', { replace: true });
       },
     },
   );
@@ -75,9 +76,7 @@ function Authentication() {
           `${authPageChoice === 'signin' ? 'signup' : 'signin'}`,
         )}
       >
-        {`${
-          authPageChoice === 'signin' ? 'Signup' : 'Signin'
-        }`}
+        {`${authPageChoice === 'signin' ? 'Signup' : 'Signin'}`}
       </Styled.ChangeAuthButton>
     </Styled.Container>
   );

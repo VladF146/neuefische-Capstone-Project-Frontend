@@ -17,6 +17,7 @@ Styled.ToggleButton = styled.button`
   font-size: 0.875rem;
   line-height: 1.25rem;
   font-weight: 600;
+  font-family: monospace;
   align-items: center;
   border-radius: 0.375rem;
   box-shadow: ${({ activated }) => (activated

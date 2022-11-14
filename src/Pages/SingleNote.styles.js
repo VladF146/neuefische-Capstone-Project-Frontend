@@ -8,8 +8,11 @@ Styled.Container = styled.div`
   padding: 1rem;
   flex-direction: column;
   align-items: center;
-  overflow-y: scroll;
+  overflow-y: auto;
   gap: 1rem;
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto;
 `;
 
 Styled.ContentHeader = styled.div`
@@ -123,6 +126,7 @@ Styled.Button = styled.button`
   padding: 1rem;
   border: unset;
   font-weight: bolder;
+  font-family: monospace;
   font-size: 1rem;
   cursor: pointer;
   &:hover {

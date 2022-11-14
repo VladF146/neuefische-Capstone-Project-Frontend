@@ -13,6 +13,7 @@ Styled.PasswordWrapper = styled.div`
     border-bottom-right-radius: unset;
     box-shadow: unset;
     background-color: transparent;
+    font-family: monospace;
     margin-top: 0;
   }
 `;
@@ -37,6 +38,7 @@ Styled.ToggleButton = styled.button`
   padding: 0.875rem;
   background-color: transparent;
   font-size: 0.875rem;
+  font-family: monospace;
   line-height: 1.25rem;
   font-weight: 600;
   align-items: center;
