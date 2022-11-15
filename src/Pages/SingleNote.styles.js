@@ -36,6 +36,10 @@ Styled.Input = styled.input`
   border: none;
   background-color: #f8fafc;
   width: 100%;
+
+  &:focus {
+    outline: 2px solid #34d399;
+  }
 `;
 
 Styled.Textarea = styled.textarea`
@@ -50,6 +54,10 @@ Styled.Textarea = styled.textarea`
   border: none;
   resize: none;
   background-color: #f8fafc;
+
+  &:focus {
+    outline: 2px solid #34d399;
+  }
 
   &::-webkit-scrollbar {
     width: 5px;
