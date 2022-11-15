@@ -127,8 +127,15 @@ Styled.Button = styled.button`
   font-family: monospace;
   font-size: 1rem;
   cursor: pointer;
+
   &:hover {
     background-color: #34d399;
+    color: white;
+  }
+
+  svg {
+    width: 18px;
+    margin-left: 0.5rem;
   }
 `;
 

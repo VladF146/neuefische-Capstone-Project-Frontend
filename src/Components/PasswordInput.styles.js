@@ -7,6 +7,9 @@ Styled.PasswordWrapper = styled.div`
   margin-top: 0.25rem;
   border-radius: 0.375rem;
   box-shadow: inset 0px 0px 7px 0 rgba(0, 0, 0, 0.1);
+  &:focus-within {
+    outline: 2px solid #34d399;
+  }
 
   input {
     border-top-right-radius: unset;
@@ -15,6 +18,7 @@ Styled.PasswordWrapper = styled.div`
     background-color: transparent;
     font-family: monospace;
     margin-top: 0;
+    outline: none;
   }
 `;
 

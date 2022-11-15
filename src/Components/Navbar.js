@@ -10,19 +10,19 @@ function Navbar() {
     <Styled.Navbar>
       <ul>
         <li>
-          <Styled.NavLink to="/notes">
+          <Styled.NavLink to="/notes" title="To Notes page">
             <Square3Stack3DIcon />
             Notes
           </Styled.NavLink>
         </li>
         <li>
-          <Styled.NavLink to="/create">
+          <Styled.NavLink to="/create" title="To Create page">
             <PlusCircleIcon />
             Create
           </Styled.NavLink>
         </li>
         <li>
-          <Styled.NavLink to="/settings">
+          <Styled.NavLink to="/settings" title="To Settings page">
             <AdjustmentsHorizontalIcon />
             Settings
           </Styled.NavLink>

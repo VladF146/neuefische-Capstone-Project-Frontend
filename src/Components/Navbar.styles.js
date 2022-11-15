@@ -20,7 +20,6 @@ Styled.Navbar = styled.nav`
 
   svg {
     width: 25px;
-    font-weight: bolder;
     margin-bottom: 0.2rem;
   }
 `;

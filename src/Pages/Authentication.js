@@ -62,7 +62,7 @@ function Authentication() {
           <PasswordInput passworw={password} setPassword={setPassword} />
         </div>
 
-        <Styled.Button disabled={isLoading} type="submit">
+        <Styled.Button disabled={isLoading} type="submit" title={capitalizeFirstLetter(authPageChoice)}>
           {capitalizeFirstLetter(authPageChoice)}
         </Styled.Button>
         {isError && (
@@ -75,6 +75,7 @@ function Authentication() {
         onClick={() => setAuthPageChoice(
           `${authPageChoice === 'signin' ? 'signup' : 'signin'}`,
         )}
+        title={authPageChoice === 'signin' ? 'To Signup page' : 'To Signin page'}
       >
         {`${authPageChoice === 'signin' ? 'Signup' : 'Signin'}`}
       </Styled.ChangeAuthButton>

@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.API_BASE_URL
-  || 'https://neuefische-capstone-backend.herokuapp.com';
+const API_BASE_URL = process.env.API_BASE_URL || 'https://neuefische-capstone-backend.herokuapp.com';
 
 export const getAllNotes = (user) => axios.get(`${API_BASE_URL}/api/notes`, {
   headers: {

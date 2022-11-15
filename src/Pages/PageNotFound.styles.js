@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Styled = {};
 
 Styled.Container = styled.div`
-height: 100%;
+  height: 100%;
   flex-grow: 1;
   padding: 0 1rem;
   display: flex;
