@@ -34,6 +34,11 @@ Styled.Button = styled.button`
   &:hover {
     background-color: #34d399;
   }
+
+  svg {
+    width: 18px;
+    margin-left: 0.5rem;
+  }
 `;
 
 export default Styled;
