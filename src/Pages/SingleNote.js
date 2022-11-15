@@ -1,10 +1,7 @@
 import { useState, useContext } from 'react';
 import { useQuery } from 'react-query';
 import { useParams, useNavigate } from 'react-router-dom';
-import {
-  TrashIcon,
-  ArrowPathIcon,
-} from '@heroicons/react/24/outline';
+import { TrashIcon, ArrowPathIcon } from '@heroicons/react/24/outline';
 import Toggle from '../Components/Toggle';
 import ReactMarkdownForMath from '../Components/ReactMarkdownForMath';
 import {
@@ -135,7 +132,6 @@ function SingleNote() {
       <Styled.ButtonContainer>
         <Styled.Button
           type="button"
-          title="Update note"
           disabled={isLoading || isLoadingUpdate || isLoadingDelete}
           onClick={() => handleUpdate()}
         >
@@ -144,7 +140,6 @@ function SingleNote() {
         </Styled.Button>
         <Styled.Button
           type="button"
-          title="Delete note"
           disabled={isLoading || isLoadingUpdate || isLoadingDelete}
           onClick={handleDelete}
         >

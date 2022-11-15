@@ -78,7 +78,7 @@ function CreateNote() {
           </Styled.ReactMarkdownContainer>
         )}
 
-        <Styled.Button disabled={isLoading} type="submit" title="Create new note">
+        <Styled.Button disabled={isLoading} type="submit">
           Create
           <PlusCircleIcon />
         </Styled.Button>

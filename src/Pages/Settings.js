@@ -20,7 +20,7 @@ function Settings() {
   return (
     <Styled.Container>
       <h1>{user.email}</h1>
-      <Styled.Button type="button" onClick={handleSignout} title="Signout and go o Signin page">
+      <Styled.Button type="button" onClick={handleSignout}>
         Signout
       </Styled.Button>
     </Styled.Container>
