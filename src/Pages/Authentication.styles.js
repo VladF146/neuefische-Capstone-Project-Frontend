@@ -45,6 +45,7 @@ Styled.Input = styled.input`
   border: none;
   box-shadow: inset 0px 0px 7px 0 rgba(0, 0, 0, 0.1);
   margin-top: 0.25rem;
+  background-color: #f8fafc;
 
   &:focus {
     outline: 2px solid #34d399;

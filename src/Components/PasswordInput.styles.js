@@ -5,11 +5,12 @@ const Styled = {};
 Styled.PasswordWrapper = styled.div`
   display: flex;
   margin-top: 0.25rem;
-  border-radius: 0.375rem;
+  border-radius: 10px;
   box-shadow: inset 0px 0px 7px 0 rgba(0, 0, 0, 0.1);
   &:focus-within {
     outline: 2px solid #34d399;
   }
+  background-color: #f8fafc;
 
   input {
     border-top-right-radius: unset;
@@ -46,8 +47,8 @@ Styled.ToggleButton = styled.button`
   line-height: 1.25rem;
   font-weight: 600;
   align-items: center;
-  border-top-right-radius: 0.375rem;
-  border-bottom-right-radius: 0.375rem;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
   border: unset;
   color: "black";
   cursor: pointer;
