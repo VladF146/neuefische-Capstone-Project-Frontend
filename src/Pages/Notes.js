@@ -2,13 +2,16 @@ import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import { useContext } from 'react';
 import { useQuery } from 'react-query';
 import { NotesContext, notesActionTypes } from '../Contexts/NotesContext';
-import { AuthenticationContext } from '../Contexts/AuthenticationContext';
+import {
+  AuthenticationContext,
+  authActionTypes,
+} from '../Contexts/AuthenticationContext';
 import Styled from './Notes.styles';
 import { getAllNotes } from '../Services/fetchNotes';
 
 function Notes() {
   const { notes, dispatch } = useContext(NotesContext);
-  const { user } = useContext(AuthenticationContext);
+  const { user, dispatch: authDispatch } = useContext(AuthenticationContext);
 
   const { isLoading, isError, error } = useQuery(
     'get-all-notes',
@@ -19,6 +22,8 @@ function Notes() {
       },
     },
   );
+
+  if (error?.response?.status === 401) authDispatch({ type: authActionTypes.SIGNOUT });
 
   return (
     <Styled.Container>

@@ -25,13 +25,19 @@ Styled.Button = styled.button`
   align-items: center;
   background-color: #6ee7b7;
   border-radius: 10px;
-  padding: 1rem 2rem;  border: unset;
+  padding: 1rem 2rem;
+  border: unset;
   font-weight: bolder;
   font-family: monospace;
   font-size: 1rem;
   cursor: pointer;
   &:hover {
     background-color: #34d399;
+  }
+
+  svg {
+    width: 18px;
+    margin-left: 0.5rem;
   }
 `;
 

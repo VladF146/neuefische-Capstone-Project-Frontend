@@ -1,9 +1,13 @@
 import { useState, useContext } from 'react';
 import { useQuery } from 'react-query';
 import { useParams, useNavigate } from 'react-router-dom';
+import { TrashIcon, ArrowPathIcon } from '@heroicons/react/24/outline';
 import Toggle from '../Components/Toggle';
 import ReactMarkdownForMath from '../Components/ReactMarkdownForMath';
-import { AuthenticationContext } from '../Contexts/AuthenticationContext';
+import {
+  AuthenticationContext,
+  authActionTypes,
+} from '../Contexts/AuthenticationContext';
 import { NotesContext, notesActionTypes } from '../Contexts/NotesContext';
 import Styled from './SingleNote.styles';
 
@@ -17,7 +21,7 @@ function SingleNote() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [isMarkdown, setIsMarkdown] = useState(false);
-  const { user } = useContext(AuthenticationContext);
+  const { user, dispatch: authDispatch } = useContext(AuthenticationContext);
   const { dispatch } = useContext(NotesContext);
   const { noteId } = useParams();
   const navigate = useNavigate();
@@ -49,6 +53,7 @@ function SingleNote() {
           type: notesActionTypes.UPDATE_SINGLE_NOTE,
           payload: data.data,
         });
+        setIsMarkdown(false);
       },
     },
   );
@@ -73,6 +78,12 @@ function SingleNote() {
       },
     },
   );
+
+  if (
+    error?.response?.status === 401
+    || errorUpdate?.response?.status === 401
+    || errorDelete?.response?.status === 401
+  ) authDispatch({ type: authActionTypes.SIGNOUT });
 
   const handleUpdate = async () => {
     refetchUpdate();
@@ -124,14 +135,16 @@ function SingleNote() {
           disabled={isLoading || isLoadingUpdate || isLoadingDelete}
           onClick={() => handleUpdate()}
         >
-          Update note
+          Update
+          <ArrowPathIcon />
         </Styled.Button>
         <Styled.Button
           type="button"
           disabled={isLoading || isLoadingUpdate || isLoadingDelete}
           onClick={handleDelete}
         >
-          Delete note
+          Delete
+          <TrashIcon />
         </Styled.Button>
       </Styled.ButtonContainer>
     </Styled.Container>

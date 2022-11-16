@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { ArrowUturnLeftIcon } from '@heroicons/react/24/outline';
 import Styled from './PageNotFound.styles';
 
 function PageNotFound() {
@@ -12,6 +13,7 @@ function PageNotFound() {
         onClick={() => navigate('/notes', { replace: true })}
       >
         Go back
+        <ArrowUturnLeftIcon />
       </Styled.Button>
     </Styled.Container>
   );

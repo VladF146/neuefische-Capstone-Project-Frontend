@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ArrowLeftOnRectangleIcon } from '@heroicons/react/24/outline';
 import {
   AuthenticationContext,
   authActionTypes,
@@ -22,6 +23,7 @@ function Settings() {
       <h1>{user.email}</h1>
       <Styled.Button type="button" onClick={handleSignout}>
         Signout
+        <ArrowLeftOnRectangleIcon />
       </Styled.Button>
     </Styled.Container>
   );

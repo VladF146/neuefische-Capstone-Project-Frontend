@@ -1,10 +1,14 @@
 import { useState, useContext } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
+import { PlusCircleIcon } from '@heroicons/react/24/outline';
 import Toggle from '../Components/Toggle';
 import ReactMarkdownForMath from '../Components/ReactMarkdownForMath';
 import { NotesContext, notesActionTypes } from '../Contexts/NotesContext';
-import { AuthenticationContext } from '../Contexts/AuthenticationContext';
+import {
+  AuthenticationContext,
+  authActionTypes,
+} from '../Contexts/AuthenticationContext';
 import Styled from './CreateNote.styles';
 
 import 'katex/dist/katex.min.css';
@@ -15,7 +19,7 @@ function CreateNote() {
   const [content, setContent] = useState('');
   const [isMarkdown, setIsMarkdown] = useState(true);
   const { dispatch } = useContext(NotesContext);
-  const { user } = useContext(AuthenticationContext);
+  const { user, dispatch: authDispatch } = useContext(AuthenticationContext);
 
   const navigate = useNavigate();
 
@@ -41,6 +45,8 @@ function CreateNote() {
     event.preventDefault();
     refetch();
   };
+
+  if (error?.response?.status === 401) authDispatch({ type: authActionTypes.SIGNOUT });
 
   return (
     <Styled.Container>
@@ -73,7 +79,8 @@ function CreateNote() {
         )}
 
         <Styled.Button disabled={isLoading} type="submit">
-          Create note
+          Create
+          <PlusCircleIcon />
         </Styled.Button>
         {isError && (
           <Styled.ErrorWrapper>{error.response.data.error}</Styled.ErrorWrapper>

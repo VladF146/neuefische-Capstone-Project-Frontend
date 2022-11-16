@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Styled = {};
 
 Styled.Container = styled.div`
-height: 100%;
+  height: 100%;
   flex-grow: 1;
   padding: 0 1rem;
   display: flex;
@@ -32,8 +32,14 @@ Styled.Button = styled.button`
   font-family: monospace;
   font-size: 1rem;
   cursor: pointer;
+  
   &:hover {
     background-color: #34d399;
+  }
+
+  svg {
+    width: 18px;
+    margin-left: 0.5rem;
   }
 `;
 
