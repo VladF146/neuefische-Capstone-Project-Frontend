@@ -4,7 +4,7 @@ const Styled = {};
 
 Styled.Backdrop = styled.div`
   position: absolute;
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   backdrop-filter: blur(0.2rem);
   background-color: rgba(0, 0, 0, 0.2);

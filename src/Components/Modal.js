@@ -23,7 +23,7 @@ function Modal({ setIsModalOpen, handleDelete }) {
         </Styled.ModalBody>
         <Styled.ModalFooter>
           <Styled.ApproveButton onClick={handleDelete}>
-            Delete
+            Approve
           </Styled.ApproveButton>
           <Styled.AbortButton onClick={() => setIsModalOpen(false)}>
             Cancel
