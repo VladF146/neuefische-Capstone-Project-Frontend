@@ -3,6 +3,7 @@ import { useQuery } from 'react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import { TrashIcon, ArrowPathIcon } from '@heroicons/react/24/outline';
 import Toggle from '../Components/Toggle';
+import Modal from '../Components/Modal';
 import ReactMarkdownForMath from '../Components/ReactMarkdownForMath';
 import {
   AuthenticationContext,
@@ -25,6 +26,8 @@ function SingleNote() {
   const { dispatch } = useContext(NotesContext);
   const { noteId } = useParams();
   const navigate = useNavigate();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { isLoading, isError, error } = useQuery(
     ['get-single-note', noteId],
@@ -94,60 +97,65 @@ function SingleNote() {
   };
 
   return (
-    <Styled.Container>
-      <Styled.ContentHeader>
+    <>
+      <Styled.Container>
+        <Styled.ContentHeader>
+          {isMarkdown && (
+            <Styled.Input
+              type="text"
+              onChange={(e) => setTitle(e.target.value)}
+              value={title}
+              placeholder="Note title..."
+            />
+          )}
+          {!isMarkdown && <Styled.Title>{title}</Styled.Title>}
+          <Toggle toggleState={isMarkdown} setToggleState={setIsMarkdown} />
+        </Styled.ContentHeader>
+
         {isMarkdown && (
-          <Styled.Input
-            type="text"
-            onChange={(e) => setTitle(e.target.value)}
-            value={title}
-            placeholder="Note title..."
+          <Styled.Textarea
+            onChange={(e) => setContent(e.target.value)}
+            value={content}
           />
         )}
-        {!isMarkdown && <Styled.Title>{title}</Styled.Title>}
-        <Toggle toggleState={isMarkdown} setToggleState={setIsMarkdown} />
-      </Styled.ContentHeader>
 
-      {isMarkdown && (
-        <Styled.Textarea
-          onChange={(e) => setContent(e.target.value)}
-          value={content}
-        />
+        {!isMarkdown && (
+          <Styled.ReactMarkdownContainer>
+            <ReactMarkdownForMath>{content}</ReactMarkdownForMath>
+          </Styled.ReactMarkdownContainer>
+        )}
+        {isError
+          || isErrorUpdate
+          || (isErrorDelete && (
+            <Styled.ErrorWrapper>
+              {error.response.data.error
+                || errorUpdate.response.data.error
+                || errorDelete.response.data.error}
+            </Styled.ErrorWrapper>
+          ))}
+        <Styled.ButtonContainer>
+          <Styled.Button
+            type="button"
+            disabled={isLoading || isLoadingUpdate || isLoadingDelete}
+            onClick={() => handleUpdate()}
+          >
+            Update
+            <ArrowPathIcon />
+          </Styled.Button>
+          <Styled.Button
+            type="button"
+            disabled={isLoading || isLoadingUpdate || isLoadingDelete}
+            onClick={() => setIsModalOpen(true)}
+          >
+            Delete
+            <TrashIcon />
+          </Styled.Button>
+        </Styled.ButtonContainer>
+      </Styled.Container>
+      {isModalOpen && (
+        <Modal setIsModalOpen={setIsModalOpen} handleDelete={handleDelete} />
       )}
-
-      {!isMarkdown && (
-        <Styled.ReactMarkdownContainer>
-          <ReactMarkdownForMath>{content}</ReactMarkdownForMath>
-        </Styled.ReactMarkdownContainer>
-      )}
-      {isError
-        || isErrorUpdate
-        || (isErrorDelete && (
-          <Styled.ErrorWrapper>
-            {error.response.data.error
-              || errorUpdate.response.data.error
-              || errorDelete.response.data.error}
-          </Styled.ErrorWrapper>
-        ))}
-      <Styled.ButtonContainer>
-        <Styled.Button
-          type="button"
-          disabled={isLoading || isLoadingUpdate || isLoadingDelete}
-          onClick={() => handleUpdate()}
-        >
-          Update
-          <ArrowPathIcon />
-        </Styled.Button>
-        <Styled.Button
-          type="button"
-          disabled={isLoading || isLoadingUpdate || isLoadingDelete}
-          onClick={handleDelete}
-        >
-          Delete
-          <TrashIcon />
-        </Styled.Button>
-      </Styled.ButtonContainer>
-    </Styled.Container>
+    </>
   );
 }
 

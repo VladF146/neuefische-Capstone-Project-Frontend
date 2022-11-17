@@ -32,7 +32,7 @@ Styled.Button = styled.button`
   font-family: monospace;
   font-size: 1rem;
   cursor: pointer;
-  
+
   &:hover {
     background-color: #34d399;
   }
