@@ -5,10 +5,11 @@ const Styled = {};
 Styled.Container = styled.div`
   flex-grow: 1;
   display: flex;
+  height: 100px;
   padding: 1rem;
   flex-direction: column;
   align-items: center;
-  overflow-y: auto;
+  overflow-y: hidden;
   gap: 1rem;
   width: 100%;
   max-width: 768px;
@@ -78,11 +79,12 @@ Styled.Textarea = styled.textarea`
 `;
 
 Styled.ReactMarkdownContainer = styled.div`
+  position: relative;
   flex-grow: 1;
   border-radius: 10px;
   height: 50%;
   width: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   word-wrap: break-word;
 
   img {
